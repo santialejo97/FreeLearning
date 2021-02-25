@@ -1,2 +1,2 @@
-html{font-size:62.5%;box-sizing:border-box}*,:after,:before{box-sizing:inherit}body{font-family:Poppins,sans-serif;font-size:1.6rem}.contenedor{width:95%;max-width:1200px;margin:0 auto}.formulario_usuarios{width:100%}.formulario_usuarios .campo{display:flex;padding:0 5rem}
+html{font-size:62.5%;box-sizing:border-box}*,:after,:before{box-sizing:inherit}body{font-family:Poppins,sans-serif;font-size:1.6rem}.contenedor{width:95%;max-width:1200px;margin:0 auto}h1,h2,h3,h4{margin:0}.formulario_usuarios{width:100%}.formulario_usuarios .campo{display:flex;padding:0 5rem}.header{background-color:#adff2f}
 /*# sourceMappingURL=app.css.map */
