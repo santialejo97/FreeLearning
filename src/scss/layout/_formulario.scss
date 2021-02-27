@@ -1,0 +1,27 @@
+.formulario_usuarios{
+    margin-top: $separacion;
+    width: 100%;
+    .campo{
+        display: flex;
+        padding: 0 $separacion;
+        gap: $separacion / 4;
+        margin-bottom: 3rem;
+        align-items: center;
+        label{
+            flex: 0 0 15rem;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: $bold; 
+            cursor: pointer;
+        }
+
+        input{
+           flex: 1; 
+           border-radius: 1rem;
+           padding: 1rem;
+           border: none;
+        }
+
+    }
+    
+}

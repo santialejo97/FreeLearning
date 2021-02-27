@@ -1,0 +1,28 @@
+.header{ 
+    background-color:$rojo;
+   
+}
+
+.barra{
+    padding: $separacion /2 ;
+
+    .titulo{
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 5rem;
+    color: $blanco;
+    cursor: pointer;
+    font-weight: $black;
+    }
+    @include tablet{
+        .titulo{
+            color:$negro ;
+            font-size: 1rem;
+        }
+    }
+    .titulo_Universidad{
+        text-transform: none;
+        font-size: 1.6rem;
+    }
+}
