@@ -28,4 +28,10 @@
           box-shadow: 0 0 1rem $negro;
         }
     }
+    .enlace{
+        padding-bottom: 2rem;
+        .enlace-texto{text-decoration: none;
+        color:black;
+        }
+    }
 }
