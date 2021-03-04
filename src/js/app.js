@@ -71,15 +71,7 @@ function capturaDatos(){
   passInput.addEventListener('input', (e)=>{
     usuario.usuarioPassword=e.target.value.trim();
     
-  })
-
-  // Capturamos la fecha de nacimiento 
-  const fechaInput= document.querySelector('#fecha');
-  fechaInput.addEventListener('input', (e)=>{
-    usuario.fecha =new Date(e.target.value);
-    
-  })
-  
+  })  
 }
 
 // funcion de las alarmas
