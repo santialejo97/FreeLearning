@@ -16,6 +16,14 @@ function iniciarApp(){
 
 async function conectarApi(){
     try {
+      const url = 'http://localhost:3000/api/usuarios/'
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("data:")
+        console.log(data)
+      })
+      .catch(err=> console.log(err))
         
     } catch (error) {
         
