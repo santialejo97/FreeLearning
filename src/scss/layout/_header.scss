@@ -15,12 +15,7 @@
     cursor: pointer;
     font-weight: $black;
     }
-    @include tablet{
-        .titulo{
-            color:$negro ;
-            font-size: 1rem;
-        }
-    }
+    
     .titulo_Universidad{
         text-transform: none;
         font-size: 1.6rem;
