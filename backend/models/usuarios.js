@@ -9,7 +9,5 @@ module.exports = (sequelize, type) => {
         usuarioEmail: type.STRING,
         usuarioPassword: type.STRING,
         usuarioPoliticaDatos: type.INTEGER
-        
-
     })
 }
