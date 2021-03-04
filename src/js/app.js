@@ -23,7 +23,18 @@ function iniciarApp(){
  function conectarApi(){
     try {
       const url = 'http://localhost:3000/api/usuarios/'
-      fetch(url)
+      console.log(usuario)
+      fetch(url,{method:'POST',
+      body: JSON.stringify({
+        usuarioNombre: usuario.usuarioNombre,
+        usuarioEmail: usuario.usuarioEmail,
+        usuarioPassword: usuario.usuarioPassword,
+        
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log(data)})
@@ -38,37 +49,29 @@ function capturaDatos(){
   const nombreInput= document.querySelector('#nombre')
   nombreInput.addEventListener('input', (e)=>{
     usuario.usuarioNombre= e.target.value.trim();
-    console.log(usuario)
+    
   })
   
   // Capturamos el dato de Carrera Universidad
   const carreraInput=document.querySelector('#carrera');
   carreraInput.addEventListener('input', (e)=>{
     usuario.carrera= e.target.value.trim();
-    console.log(usuario)
+    
   })
 
   // Capturamos el correo del usuario
   const correoInput=document.querySelector('#email');
   correoInput.addEventListener('input',(e)=> {
     usuario.usuarioEmail=e.target.value.trim();
-    console.log(usuario)
+    
   })
 
   // Capturamos la contraseña del usuario
   const passInput= document.querySelector('#password');
   passInput.addEventListener('input', (e)=>{
     usuario.usuarioPassword=e.target.value.trim();
-    console.log(usuario)
-  })
-
-  // Capturamos la fecha de nacimiento 
-  const fechaInput= document.querySelector('#fecha');
-  fechaInput.addEventListener('input', (e)=>{
-    usuario.fecha =new Date(e.target.value);
-    console.log(usuario)
-  })
-  
+    
+  })  
 }
 
 // funcion de las alarmas
