@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs');
 // import ManagementController from '../controller/ManagementController';
 const {carrera} = require('../../db');
 
@@ -18,13 +17,11 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/', async (req, res) =>{
-    req.body.carreraPassword= bcrypt.hashSync(req.body.carreraPassword,10);
     const carreras= await carrera.create(req.body);
     res.json(carreras);
 });
 
 router.put('/:id', async (req, res) =>{
-    req.body.carreraPassword= bcrypt.hashSync(req.body.carreraPassword,10);
     await carrera.update(req.body,{
         where: { carreraId: req.params.id }
     });
