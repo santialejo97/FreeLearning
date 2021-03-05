@@ -12,6 +12,14 @@
         <div class="barra">
             <h1 class="titulo">FreeLearning 
                 <span class="titulo_Universidad">Universidad Manuela Beltran</span></h1>
+                <div class="navegador_header">
+                    <nav class="navegador">
+                        <a class="enlace_navegador" href="#">&#988; &#91; Home &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Grupos &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Login &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Cuenta &#93;</a>
+                    </nav>
+                </div>
         </div>
     </header>
     
@@ -32,7 +40,10 @@
                 </div>
                 <div class="campo">
                 <label for="carrera">Carrera</label>
-                <input type="text" id="carrera" placeholder="Ingresar Carrera Universidad">
+                <!-- <input type="text" id="carrera" placeholder="Ingresar Carrera Universidad"> -->
+                <select id="carrera">
+                    <option disabled selected>--Seleccione Carrera--</option>
+                </select>
                 </div>
                 <div class="enlace">
                     <input type="checkbox" name="my-checkbox" id="opt-in">
