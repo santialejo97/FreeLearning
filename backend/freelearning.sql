@@ -114,16 +114,16 @@ ALTER TABLE derecho ADD CONSTRAINT fk_moduloId FOREIGN KEY (fk_moduloId) REFEREN
 ALTER TABLE derecho ADD CONSTRAINT fk_estadoId4 FOREIGN KEY (fk_estadoId) REFERENCES estado (estadoId);
 
 ALTER TABLE publicacion ADD CONSTRAINT fk_tipoPublicacionId FOREIGN KEY (fk_tipoPublicacionId) REFERENCES tipoPublicacion (tipoPublicacionId);
-ALTER TABLE publicacion ADD CONSTRAINT fk_usuarioId FOREIGN KEY (fk_usuarioId) REFERENCES estudiante (estudianteId);
+ALTER TABLE publicacion ADD CONSTRAINT fk_usuarioId FOREIGN KEY (fk_estudianteId) REFERENCES estudiante (estudianteId);
 ALTER TABLE publicacion ADD CONSTRAINT fk_estadoId5 FOREIGN KEY (fk_estadoId) REFERENCES estado (estadoId);
 
 ALTER TABLE publicacion_extra ADD CONSTRAINT fk_estadoId6 FOREIGN KEY (fk_estadoId) REFERENCES estado (estadoId);
 ALTER TABLE publicacion_extra ADD CONSTRAINT fk_publicacionId FOREIGN KEY (fk_publicacionId) REFERENCES publicacion (publicacionId);
 
-ALTER TABLE foro ADD CONSTRAINT fk_usuarioId2 FOREIGN KEY (fk_usuarioId) REFERENCES estudiante (estudianteId);
+ALTER TABLE foro ADD CONSTRAINT fk_usuarioId2 FOREIGN KEY (fk_estudianteId) REFERENCES estudiante (estudianteId);
 ALTER TABLE foro ADD CONSTRAINT fk_estadoId7 FOREIGN KEY (fk_estadoId) REFERENCES estado (estadoId);
 
-ALTER TABLE respuesta_foro ADD CONSTRAINT fk_usuarioId3 FOREIGN KEY (fk_usuarioId) REFERENCES estudiante (estudianteId);
+ALTER TABLE respuesta_foro ADD CONSTRAINT fk_usuarioId3 FOREIGN KEY (fk_estudianteId) REFERENCES estudiante (estudianteId);
 ALTER TABLE respuesta_foro ADD CONSTRAINT fk_estadoId8 FOREIGN KEY (fk_estadoId) REFERENCES estado (estadoId);
 ALTER TABLE respuesta_foro ADD CONSTRAINT fk_foroId FOREIGN KEY (fk_foroId) REFERENCES foro (foroId);
 
