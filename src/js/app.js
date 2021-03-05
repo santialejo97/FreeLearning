@@ -46,14 +46,15 @@ function llenarSelector(){
  function conectarApi(){
   //  se conecta a el BackEnd y se realiza un metodo POST
     try {
-      const url = 'http://localhost:3000/api/usuarios/'
+      const url = 'http://localhost:3000/api/estudiantes/'
       console.log(usuario)
       fetch(url,{method:'POST',
       body: JSON.stringify({
-        usuarioNombre: usuario.usuarioNombre,
-        usuarioEmail: usuario.usuarioEmail,
-        usuarioPassword: usuario.usuarioPassword,
-        
+        estudianteNombre:  usuario.usuarioNombre,
+        estudianteEmail:usuario.usuarioEmail,
+        estudiantePassword: usuario.usuarioPassword
+        // estudiantePoliticaDatos: type.INTEGER,
+        // fk_carreraId: type.INTEGER,
       }),
       headers: {
         'Content-Type': 'application/json'
