@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const bcript = require('bcriptjs');
+const bcrypt = require('bcryptjs');
 // import ManagementController from '../controller/ManagementController';
 const {estudiante} = require('../../db');
 
@@ -18,13 +18,13 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/', async (req, res) =>{
-    req.body.estudiantePassword= bcript.hashSync(req.body.estudiantePassword,10);
+    req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
     const estudiantes= await estudiante.create(req.body);
     res.json(estudiantes);
 });
 
 router.put('/:id', async (req, res) =>{
-    req.body.estudiantePassword= bcript.hashSync(req.body.estudiantePassword,10);
+    req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
     await estudiante.update(req.body,{
         where: { estudianteId: req.params.id }
     });
