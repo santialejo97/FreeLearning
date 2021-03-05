@@ -1,8 +1,4 @@
-
-const carreras= ['Ingenieria de Software'
-,'Ingenieria Industrial', 'Ingenieria Mecatronica',
-'Ingenieria Ambiental','Ingenieria Biomedica',
-'Derecho', 'Enfermeria', 'Fisioterapia' ];
+const { sync } = require("gulp-sass");
 
 const usuario={
   usuarioNombre: '',
@@ -28,19 +24,31 @@ function iniciarPagina(){
   enviarObjeto();
 }
 
-function llenarSelector(){
-  // se selecciona el select 
-  const selector= document.querySelector('#carrera')
-  // se recorrer el arreglo de las carreras
-  carreras.forEach(carrera =>{
-    //  se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
-    const option = document.createElement('OPTION');
-    option.classList.add('opcionCarrera')
-    option.value= carrera
-    option.innerHTML=carrera;
-  // se agregar el option de la carrera a el selector 
-    selector.appendChild(option)
-  })
+async function llenarSelector(){
+  // se conecta a la tabla de carreras
+  const urlcarrera= 'http://localhost:3000/api/carreras/';
+  try {
+    const carrera= await fetch(urlcarrera,{method:'GET'})
+    .then(response => response.json())
+    .then(data =>{
+      console.log(data)
+      const {carreraNombre}=data;
+    })
+  } catch (error) {
+    console.log(error)
+  }
+  // // se selecciona el select 
+  // const selector= document.querySelector('#carrera')
+  // // se recorrer el arreglo de las carreras
+  // carreraNombre.forEach(carrera =>{
+  //   //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
+  //   const option = document.createElement('OPTION');
+  //   option.classList.add('opcionCarrera')
+  //   option.value= carrera
+  //   option.innerHTML=carrera;
+  // // se agregar el option de la carrera a el selector 
+  //   selector.appendChild(option)
+  // })
 }
 
  function conectarApi(){
