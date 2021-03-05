@@ -1,9 +1,15 @@
 .header{ 
-    background-color:$rojo;
-   
+background: #1e5799; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #1e5799 0%, #0d3147 23%, #070405 51%, #590e15 91%, #590e15 91%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #1e5799 0%,#0d3147 23%,#070405 51%,#590e15 91%,#590e15 91%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #1e5799 0%,#0d3147 23%,#070405 51%,#590e15 91%,#590e15 91%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#590e15',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 .barra{
+    display: flex;
+    justify-content: space-between;
     padding: $separacion /2 ;
 
     .titulo{
@@ -15,14 +21,27 @@
     cursor: pointer;
     font-weight: $black;
     }
-    @include tablet{
-        .titulo{
-            color:$negro ;
-            font-size: 1rem;
-        }
-    }
+    
     .titulo_Universidad{
         text-transform: none;
         font-size: 1.6rem;
     }
+
+    
+
+}
+.navegador_header{
+    display: flex;
+    align-items: center;
+        .enlace_navegador{
+            text-decoration: none;
+            color: #FFFFFF;
+            margin-right: $separacion / 4;
+        }
+        .enlace_navegador:hover{
+            color: $fondo;
+            font-size: 2rem;
+            font-weight: $bold;
+        }
+    
 }

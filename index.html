@@ -12,10 +12,19 @@
         <div class="barra">
             <h1 class="titulo">FreeLearning 
                 <span class="titulo_Universidad">Universidad Manuela Beltran</span></h1>
+                <div class="navegador_header">
+                    <nav class="navegador">
+                        <a class="enlace_navegador" href="#">&#988; &#91; Home &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Grupos &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Login &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Cuenta &#93;</a>
+                    </nav>
+                </div>
         </div>
     </header>
     
         <div class="contenedor"> 
+            <!-- formulario Estudiantes -->
             <form class="formulario_usuarios">
                 <div class="campo">
                 <label for="nombre">Nombre Usuario</label>
@@ -31,14 +40,23 @@
                 </div>
                 <div class="campo">
                 <label for="carrera">Carrera</label>
-                <input type="text" id="carrera" placeholder="Ingresar Carrera Universidad">
+                <!-- <input type="text" id="carrera" placeholder="Ingresar Carrera Universidad"> -->
+                <select id="carrera">
+                    <option disabled selected>--Seleccione Carrera--</option>
+                </select>
                 </div>
-                <div class="campo">
-                <label for="fecha">Fecha Nacimiento</label>
-                <input type="date" id="fecha">
+                <div class="enlace">
+                    <input type="checkbox" name="my-checkbox" id="opt-in">
+                    <label for="opt-in"><a class="enlace-texto" href="#">Aceptar politicas de manejo de datos</a></label>
                 </div>  
-                <input type="button" id="envio" value="Envio">
+                <div class="campo">
+                 <input type="button" id="envio" value="Envio" class="envio">
+                </div>
             </form>
+            <!-- Formlario Actualizar datos  MARLON DESBAJO DE ESTE COMENTARIO !!!!!! -->
+            <form></form>
+
+
         </div>
         <script src="build/js/bundle.min.js"></script>
 </body>

@@ -1,69 +1,100 @@
-const usuario={
 
+const carreras= ['Ingenieria de Software'
+,'Ingenieria Industrial', 'Ingenieria Mecatronica',
+'Ingenieria Ambiental','Ingenieria Biomedica',
+'Derecho', 'Enfermeria', 'Fisioterapia' ];
+
+const usuario={
+  usuarioNombre: '',
+  usuarioEmail: '',
+  usuarioPassword: '',
+  usuarioPoliticaDatos: '',
+  usuarioCarrera: ''
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    iniciarApp();   
+    iniciarPagina();   
 });
 
-function iniciarApp(){
-//   conexion de Api
-  conectarApi();
+function iniciarPagina(){
+
+  //LLenar selector de las carrera de la Universidad
+  llenarSelector();
 
   // Capturamos la informqacion de formulario 
   capturaDatos();
+
+  // enviar objeto 
+  enviarObjeto();
 }
 
-async function conectarApi(){
+function llenarSelector(){
+  // se selecciona el select 
+  const selector= document.querySelector('#carrera')
+  // se recorrer el arreglo de las carreras
+  carreras.forEach(carrera =>{
+    //  se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
+    const option = document.createElement('OPTION');
+    option.classList.add('opcionCarrera')
+    option.value= carrera
+    option.innerHTML=carrera;
+  // se agregar el option de la carrera a el selector 
+    selector.appendChild(option)
+  })
+}
+
+ function conectarApi(){
+  //  se conecta a el BackEnd y se realiza un metodo POST
     try {
       const url = 'http://localhost:3000/api/usuarios/'
-      fetch(url)
+      console.log(usuario)
+      fetch(url,{method:'POST',
+      body: JSON.stringify({
+        usuarioNombre: usuario.usuarioNombre,
+        usuarioEmail: usuario.usuarioEmail,
+        usuarioPassword: usuario.usuarioPassword,
+        
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
       .then(response => response.json())
       .then(data => {
-        console.log("data:")
-        console.log(data)
-      })
-      .catch(err=> console.log(err))
-        
+        console.log(data)})
     } catch (error) {
-        
+        console.log(error)
     }
 }
+
+
 function capturaDatos(){
-  // capturamos el dato de nombre 
+  // Capturamos el dato de nombre 
   const nombreInput= document.querySelector('#nombre')
   nombreInput.addEventListener('input', (e)=>{
-    const value= e.target.value.trim();
-    console.log(value)
+    usuario.usuarioNombre= e.target.value.trim();
+    
   })
   
-  // capturamos el dato de Carrera Universidad
-  const carreraInput=document.querySelector('#carrera');
-  carreraInput.addEventListener('input', (e)=>{
-    const value= e.target.value.trim();
-    console.log(value)
-  })
+  // Capturamos el dato de Carrera Universidad
+  const carreraSelector=document.querySelector('#carrera').value;
+    usuario.usuarioCarrera= carreraSelector;
+    
+  
 
-  // capturamos el correo del usuario
+  // Capturamos el correo del usuario
   const correoInput=document.querySelector('#email');
   correoInput.addEventListener('input',(e)=> {
-    const value=e.target.value.trim()
-     console.log(typeof value)
+    usuario.usuarioEmail=e.target.value.trim();
+    
   })
 
-  // capturamos la contraseña del usuario
+  // Capturamos la contraseña del usuario
   const passInput= document.querySelector('#password');
   passInput.addEventListener('input', (e)=>{
-    const value =e.target.value.trim();
-  })
-
-  // Capturamos la fecha de nacimiento 
-  const fechaInput= document.querySelector('#fecha');
-  fechaInput.addEventListener('input', (e)=>{
-    const value =new Date(e.target.value);
-    console.log(typeof value)
-  })
-
+    usuario.usuarioPassword=e.target.value.trim();
+    
+  })  
 }
 
 // funcion de las alarmas
@@ -73,8 +104,29 @@ function mostrarAlerta(mensaje , tipo){
   alerta.classList.add('alerta')
   if(tipo == 'error'){
     alerta.classList.add('error');
+  }else{
+    alerta.classList.add('creado');
   }
   const formulario= document.querySelector('.formulario_usuarios');
   formulario.appendChild(alerta);
+
+  setTimeout(()=>{
+    alerta.remove();
+  }, 3000)
+
+}
+
+function enviarObjeto(){
+  const boton = document.querySelector('#envio')
+  boton.addEventListener('click',()=>{
+ //   validacion de los campos y la ejecucion con el API
+ if(usuario.usuarioNombre == ''){
+  mostrarAlerta("Todos los Campos son obligatorios", 'error');
+ }else{
+  mostrarAlerta("Usuario Creado Correctamente", 'correcto');
+  conectarApi();
+  console.log('estoy enviando ....')
+ }
+})
 }
 
