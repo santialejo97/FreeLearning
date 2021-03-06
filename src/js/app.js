@@ -22,10 +22,10 @@ function iniciarPagina(){
   // enviar objeto 
   enviarObjeto();
 
+
 }
 
-
-
+// se trae infromacion de la base dedatos y se llena el selector 
 async function llenarSelector(){
   // se conecta a la tabla de carreras
   const urlcarrera= 'http://localhost:3000/api/carreras/';
@@ -56,6 +56,7 @@ async function llenarSelector(){
  
 }
 
+// funcion de conexion de api para el envio de estudiantes
  function conectarApi(){
   //  se conecta a el BackEnd y se realiza un metodo POST
     try {
@@ -65,9 +66,9 @@ async function llenarSelector(){
       body: JSON.stringify({
         estudianteNombre:  usuario.usuarioNombre,
         estudianteEmail:usuario.usuarioEmail,
-        estudiantePassword: usuario.usuarioPassword
-        // estudiantePoliticaDatos: type.INTEGER,
-        // fk_carreraId: type.INTEGER,
+        estudiantePassword: usuario.usuarioPassword,
+        estudiantePoliticaDatos: usuario.usuarioPoliticaDatos,
+        fk_carreraId: usuario.usuarioCarrera
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -81,7 +82,7 @@ async function llenarSelector(){
     }
 }
 
-
+// funcion de captura de datos 
 function capturaDatos(){
   // Capturamos el dato de nombre 
   const nombreInput= document.querySelector('#nombre')
@@ -127,14 +128,12 @@ function mostrarAlerta(mensaje , tipo){
 
   setTimeout(()=>{
     alerta.remove();
-  }, 3000)
+  }, 5000)
 
 }
 
-function enviarObjeto(){
-  const boton = document.querySelector('#envio')
-  boton.addEventListener('click',(e)=>{
-// validamos la aceptacion de las politicas 
+// funcion de validacion de las politicas 
+function politicasAceptacion(){
   const politicas = document.getElementById('opt-in').checked;
   console.log(politicas);
   if(politicas){
@@ -142,18 +141,31 @@ function enviarObjeto(){
   }else{
     usuario.usuarioPoliticaDatos=0;
   }
+}
 
+// validacion de campos obligatorios 
+function validacionCampos(){
+  if(usuario.usuarioNombre === '' || usuario.usuarioCarrera === '' || usuario.usuarioEmail === '' 
+  || usuarioPassword === ''){
+   mostrarAlerta("Es necesario llenar nombre, contraseña, carrera y correo ", 'error');
+   console.log(usuario)
+   e.preventDefault;
+  }else{
+   mostrarAlerta("Usuario Creado Correctamente", 'correcto');
+   conectarApi();
+   console.log('estoy enviando ....')
+   console.log(usuario)
+  }
+}
+
+// de ejecucion de el envio del usuario 
+function enviarObjeto(){
+  const boton = document.querySelector('#envio')
+  boton.addEventListener('click',(e)=>{
+// validamos la aceptacion de las politicas 
+politicasAceptacion();
  //   validacion de los campos y la ejecucion con el API
- if(usuario.usuarioNombre == '' && usuario.usuarioCarrera == '' && usuario.usuarioEmail == '' && usuarioPassword == ''){
-  mostrarAlerta("Es necesario llenar nombre, contraseña, ", 'error');
-  console.log(usuario)
-  e.preventDefault;
- }else{
-  mostrarAlerta("Usuario Creado Correctamente", 'correcto');
-  conectarApi();
-  console.log('estoy enviando ....')
-  console.log(usuario)
- }
+ validacionCampos();
 })
 }
 
