@@ -22,10 +22,17 @@
                 </div>
         </div>
     </header>
-    
-        <div class="contenedor"> 
+
+        <div class="secciones contenedor">
+            <nav class="tabs">
+                <button class="boton" type="button" data-pagina="1">Estudiantes</button>
+                <button class="boton" type="button" data-pagina="2">Empleados</button>
+            </nav>
+        </div>
+    <div class="formularios">
+        <div class="contenedor seccion" id="pagina-1"> 
             <!-- formulario Estudiantes -->
-            <form class="formulario_usuarios" name="estudiante">
+            <form class="mensaje1 formulario_usuarios" >
                 <div class="campo">
                 <label for="nombre">Nombre Usuario</label>
                 <input id="nombre" type="text" placeholder="ingrese nombre completo" required>
@@ -44,16 +51,37 @@
                 <select id="carrera" class="selector">
                     <option disabled selected>--Seleccione Carrera--</option>
                 </select>
-                </div>
-                <div class="enlace">
-                    <input type="checkbox" name="mycheckbox" id="opt-in" value="1">
-                    <label for="opt-in"><a class="enlace-texto" href="#">Aceptar politicas de manejo de datos</a></label>
                 </div>  
+            </form>
+        </div>
+
+        <div class="contenedor seccion" id="pagina-2"> 
+            <!-- formulario Empleados -->
+            <form class="mensaje2 formulario_usuarios" >
                 <div class="campo">
-                 <input type="button" id="envio" value="Envio" class="envio">
+                <label for="nombreempleado">Nombre Empleado</label>
+                <input id="nombreempleado" type="text" placeholder="ingrese nombre completo" required>
+                </div>
+                <div class="campo">
+                <label for="emailempleado">Correo</label>
+                <input type="email" id="emailempleado" placeholder="Ingresa el Email" required>
+                </div>
+                <div class="campo">
+                <label for="passwordempleado">Contraseña</label>
+                <input type="password" id="passwordempleado" placeholder="ingrese una contraseña" required>
                 </div>
             </form>
         </div>
+        <div class="enlace">
+            <input type="checkbox" name="mycheckbox" id="opt-in" value="1">
+            <label for="opt-in"><a class="enlace-texto" href="#">Aceptar politicas de manejo de datos</a></label>
+        </div>  
+            <div class="boton_principal contenedor">
+             <input type="button" id="envio" value="Envio" class="envio">
+            </div>
+    </div>
+
+
         <script src="build/js/bundle.min.js"></script>
 </body>
 </html>

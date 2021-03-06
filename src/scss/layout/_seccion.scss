@@ -1,0 +1,22 @@
+.seccion{
+    display: none;
+}
+
+.mostrarseccion{
+    display: block !important;  
+}
+
+.secciones{
+    display: flex;
+    justify-content: center;
+    .tabs{
+        .boton{
+            border-radius: .5rem;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            margin: $separacion / 2;
+            font-weight: $bold;
+        }
+    }
+}
