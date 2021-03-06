@@ -1,4 +1,3 @@
-const { sync } = require("gulp-sass");
 
 const usuario={
   usuarioNombre: '',
@@ -22,33 +21,39 @@ function iniciarPagina(){
 
   // enviar objeto 
   enviarObjeto();
+
 }
+
+
 
 async function llenarSelector(){
   // se conecta a la tabla de carreras
   const urlcarrera= 'http://localhost:3000/api/carreras/';
   try {
     const carrera= await fetch(urlcarrera,{method:'GET'})
-    .then(response => response.json())
-    .then(data =>{
-      console.log(data)
-      const {carreraNombre}=data;
-    })
+    const data = await carrera.json();
+    console.log(data)
+     // se selecciona el select  
+  const selector= document.querySelector('#carrera')
+
+  // se recorrer el arreglo de las carreras
+  data.forEach(carrera =>{
+    const {carreraNombre, carreraId}= carrera;
+    console.log(carreraNombre)
+
+  //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
+    const option = document.createElement('OPTION');
+    option.classList.add('opcionCarrera')
+    option.value= carreraId;
+    option.innerHTML=carreraNombre;
+
+  // se agregar el option de la carrera a el selector 
+    selector.appendChild(option)
+  })
   } catch (error) {
     console.log(error)
   }
-  // // se selecciona el select 
-  // const selector= document.querySelector('#carrera')
-  // // se recorrer el arreglo de las carreras
-  // carreraNombre.forEach(carrera =>{
-  //   //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
-  //   const option = document.createElement('OPTION');
-  //   option.classList.add('opcionCarrera')
-  //   option.value= carrera
-  //   option.innerHTML=carrera;
-  // // se agregar el option de la carrera a el selector 
-  //   selector.appendChild(option)
-  // })
+ 
 }
 
  function conectarApi(){
@@ -86,10 +91,10 @@ function capturaDatos(){
   })
   
   // Capturamos el dato de Carrera Universidad
-  const carreraSelector=document.querySelector('#carrera').value;
-    usuario.usuarioCarrera= carreraSelector;
-    
-  
+  const carreraSelector=document.querySelector('#carrera');
+  carreraSelector.addEventListener('click', e=>{
+  usuario.usuarioCarrera= parseInt(e.target.value);
+  })
 
   // Capturamos el correo del usuario
   const correoInput=document.querySelector('#email');
@@ -102,8 +107,9 @@ function capturaDatos(){
   const passInput= document.querySelector('#password');
   passInput.addEventListener('input', (e)=>{
     usuario.usuarioPassword=e.target.value.trim();
-    
-  })  
+  }) 
+  
+ 
 }
 
 // funcion de las alarmas
@@ -128,9 +134,14 @@ function mostrarAlerta(mensaje , tipo){
 function enviarObjeto(){
   const boton = document.querySelector('#envio')
   boton.addEventListener('click',()=>{
+// validamos la aceptacion de las politicas 
+  const politicas = document.querySelector('#opt-in');
+  console.log(politicas);
+
  //   validacion de los campos y la ejecucion con el API
  if(usuario.usuarioNombre == ''){
   mostrarAlerta("Todos los Campos son obligatorios", 'error');
+  console.log(usuario)
  }else{
   mostrarAlerta("Usuario Creado Correctamente", 'correcto');
   conectarApi();
