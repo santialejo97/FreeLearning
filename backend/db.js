@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const estudiantesModel = require('./models/estudiantes');
 const empleadosModel = require('./models/empleados');
-const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
+const sequelize = new Sequelize('freeLearning','root','',{ 
     host:'localhost', 
     dialect:'mysql'
 });
