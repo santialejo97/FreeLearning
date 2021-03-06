@@ -1,9 +1,4 @@
 
-const carreras= ['Ingenieria de Software'
-,'Ingenieria Industrial', 'Ingenieria Mecatronica',
-'Ingenieria Ambiental','Ingenieria Biomedica',
-'Derecho', 'Enfermeria', 'Fisioterapia' ];
-
 const usuario={
   usuarioNombre: '',
   usuarioEmail: '',
@@ -26,34 +21,53 @@ function iniciarPagina(){
 
   // enviar objeto 
   enviarObjeto();
+
 }
 
-function llenarSelector(){
-  // se selecciona el select 
+
+
+async function llenarSelector(){
+  // se conecta a la tabla de carreras
+  const urlcarrera= 'http://localhost:3000/api/carreras/';
+  try {
+    const carrera= await fetch(urlcarrera,{method:'GET'})
+    const data = await carrera.json();
+    console.log(data)
+     // se selecciona el select  
   const selector= document.querySelector('#carrera')
+
   // se recorrer el arreglo de las carreras
-  carreras.forEach(carrera =>{
-    //  se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
+  data.forEach(carrera =>{
+    const {carreraNombre, carreraId}= carrera;
+    console.log(carreraNombre)
+
+  //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
     const option = document.createElement('OPTION');
     option.classList.add('opcionCarrera')
-    option.value= carrera
-    option.innerHTML=carrera;
+    option.value= carreraId;
+    option.innerHTML=carreraNombre;
+
   // se agregar el option de la carrera a el selector 
     selector.appendChild(option)
   })
+  } catch (error) {
+    console.log(error)
+  }
+ 
 }
 
  function conectarApi(){
   //  se conecta a el BackEnd y se realiza un metodo POST
     try {
-      const url = 'http://localhost:3000/api/usuarios/'
+      const url = 'http://localhost:3000/api/estudiantes/'
       console.log(usuario)
       fetch(url,{method:'POST',
       body: JSON.stringify({
-        usuarioNombre: usuario.usuarioNombre,
-        usuarioEmail: usuario.usuarioEmail,
-        usuarioPassword: usuario.usuarioPassword,
-        
+        estudianteNombre:  usuario.usuarioNombre,
+        estudianteEmail:usuario.usuarioEmail,
+        estudiantePassword: usuario.usuarioPassword
+        // estudiantePoliticaDatos: type.INTEGER,
+        // fk_carreraId: type.INTEGER,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -77,10 +91,10 @@ function capturaDatos(){
   })
   
   // Capturamos el dato de Carrera Universidad
-  const carreraSelector=document.querySelector('#carrera').value;
-    usuario.usuarioCarrera= carreraSelector;
-    
-  
+  const carreraSelector=document.querySelector('#carrera');
+  carreraSelector.addEventListener('click', e=>{
+  usuario.usuarioCarrera= parseInt(e.target.value);
+  })
 
   // Capturamos el correo del usuario
   const correoInput=document.querySelector('#email');
@@ -93,8 +107,9 @@ function capturaDatos(){
   const passInput= document.querySelector('#password');
   passInput.addEventListener('input', (e)=>{
     usuario.usuarioPassword=e.target.value.trim();
-    
-  })  
+  }) 
+  
+ 
 }
 
 // funcion de las alarmas
@@ -119,9 +134,14 @@ function mostrarAlerta(mensaje , tipo){
 function enviarObjeto(){
   const boton = document.querySelector('#envio')
   boton.addEventListener('click',()=>{
+// validamos la aceptacion de las politicas 
+  const politicas = document.querySelector('#opt-in');
+  console.log(politicas);
+
  //   validacion de los campos y la ejecucion con el API
  if(usuario.usuarioNombre == ''){
   mostrarAlerta("Todos los Campos son obligatorios", 'error');
+  console.log(usuario)
  }else{
   mostrarAlerta("Usuario Creado Correctamente", 'correcto');
   conectarApi();

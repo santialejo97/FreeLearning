@@ -1,14 +1,16 @@
 const Sequelize = require('sequelize');
 
-const estudiantesModel = require('./models/estudiantes');
-const empleadosModel = require('./models/empleados');
+const estudiantesModel = require('./models/estudiante');
+const empleadosModel = require('./models/empleado');
+const carrerasModel = require('./models/carrera');
 const sequelize = new Sequelize('freeLearning','root','',{ 
     host:'localhost', 
     dialect:'mysql'
 });
 
 const estudiante= estudiantesModel(sequelize,Sequelize);
-const estudiante= empleadosModel(sequelize,Sequelize);
+const empleado= empleadosModel(sequelize,Sequelize);
+const carrera= carrerasModel(sequelize,Sequelize);
 
 sequelize.sync({ force: false})
 .then(()=> {
@@ -16,5 +18,5 @@ sequelize.sync({ force: false})
 })
 
 module.exports ={
-    estudiante
+    estudiante, empleado, carrera
 }
