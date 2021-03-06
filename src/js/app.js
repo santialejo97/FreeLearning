@@ -133,19 +133,26 @@ function mostrarAlerta(mensaje , tipo){
 
 function enviarObjeto(){
   const boton = document.querySelector('#envio')
-  boton.addEventListener('click',()=>{
+  boton.addEventListener('click',(e)=>{
 // validamos la aceptacion de las politicas 
-  const politicas = document.querySelector('#opt-in');
+  const politicas = document.getElementById('opt-in').checked;
   console.log(politicas);
+  if(politicas){
+    usuario.usuarioPoliticaDatos=1;
+  }else{
+    usuario.usuarioPoliticaDatos=0;
+  }
 
  //   validacion de los campos y la ejecucion con el API
- if(usuario.usuarioNombre == ''){
-  mostrarAlerta("Todos los Campos son obligatorios", 'error');
+ if(usuario.usuarioNombre == '' && usuario.usuarioCarrera == '' && usuario.usuarioEmail == '' && usuarioPassword == ''){
+  mostrarAlerta("Es necesario llenar nombre, contraseña, ", 'error');
   console.log(usuario)
+  e.preventDefault;
  }else{
   mostrarAlerta("Usuario Creado Correctamente", 'correcto');
   conectarApi();
   console.log('estoy enviando ....')
+  console.log(usuario)
  }
 })
 }
