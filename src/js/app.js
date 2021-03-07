@@ -22,6 +22,8 @@ function iniciarPagina(){
   // enviar objeto 
   enviarObjeto();
 
+  alertar();
+
 }
 
 
