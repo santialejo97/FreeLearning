@@ -31,6 +31,7 @@ function iniciarPagina(){
   // Capturamos la informacion de formulario estudiantes
   capturaDatosEstudiante();
 
+  // Capturamos la informacion de formulario Empleado
   capturaDatosEmpleado();
 }
 
