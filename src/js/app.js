@@ -22,6 +22,9 @@ function iniciarPagina(){
   // enviar objeto 
   enviarObjeto();
 
+  alertar();
+
+
   // asigna la clase de mostrarseccion actual en la pagina 
   mostrarSeccion();
 
