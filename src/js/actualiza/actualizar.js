@@ -1,7 +1,3 @@
-function alertar(){
-    alert("Buenas...");
-    traerDatos();
-}
 
 async function traerDatos(){
     try{
@@ -11,7 +7,9 @@ async function traerDatos(){
         console.log(data)
         data.forEach(element => {
             const {estudianteEmail, estudianteNombre, estudiantePassword}=element;
-            console.log(estudianteEmail)
+            const nombre= document.querySelector('#nombreActualizacion');
+            console.log(estudianteNombre)
+            
         });
     }catch (error) {
         console.log(error)

@@ -22,9 +22,6 @@ function iniciarPagina(){
   // enviar objeto 
   enviarObjeto();
 
-  alertar();
-
-
   // asigna la clase de mostrarseccion actual en la pagina 
   mostrarSeccion();
 
@@ -36,6 +33,7 @@ function iniciarPagina(){
 
   // Capturamos la informacion de formulario Empleado
   capturaDatosEmpleado();
+
 }
 
 // se trae infromacion de la base dedatos y se llena el selector 
@@ -241,7 +239,7 @@ if(pagina === 1){
   console.log(pagina)
    // Capturamos la informacion de formulario estudiantes
    capturaDatosEstudiante();
-}else{
+}else {
   console.log(pagina)
   // Capturamos la informacion de formulario empleado
   capturaDatosEmpleado();
