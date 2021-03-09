@@ -15,7 +15,12 @@ async function traerDatos(){
         data.forEach(element => {
             const {estudianteNombre}=element;
             const nombre= document.querySelector('#nombreActualizacion');  
-            nombre.value=estudianteNombre;
+            nombre.value = estudianteNombre;
+
+            console.log(nombre)
+            console.log(estudianteNombre)
+            
+
               
         });
     }catch (error) {

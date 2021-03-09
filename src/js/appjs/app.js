@@ -50,6 +50,7 @@ async function llenarSelector(){
   // se recorrer el arreglo de las carreras
   data.forEach(carrera =>{
     const {carreraNombre, carreraId}= carrera;
+    
 
   //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
     const option = document.createElement('OPTION');

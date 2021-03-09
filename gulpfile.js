@@ -40,7 +40,7 @@ function javascript() {
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest('./build/js'))
 }
-function javascriptActualiza() {
+function javascriptActualizar() {
     return src(paths.jsactualiza)
       .pipe(sourcemaps.init())
       .pipe(concat('actuliza.js')) // final output file name
@@ -70,8 +70,9 @@ function watchArchivos() {
     watch( paths.js, javascript );
     watch( paths.imagenes, imagenes );
     watch( paths.imagenes, versionWebp );
+    watch(paths.jsactualiza, javascriptActualizar);
 }
   
 exports.css = css;
 exports.watchArchivos = watchArchivos;
-exports.default = parallel(css, javascript, javascriptActualiza,  imagenes, versionWebp, watchArchivos ); 
+exports.default = parallel(css, javascript, javascriptActualizar, imagenes, versionWebp, watchArchivos ); 
