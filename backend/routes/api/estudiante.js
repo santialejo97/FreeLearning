@@ -14,10 +14,10 @@ router.get('/', cors(), async (req, res) =>{
 });
 
 router.get('/:id', cors(), async (req, res) =>{
-    const estudiante= await estudiante.findOne({
+    const estudiantes= await estudiante.findOne({
         where: { estudianteId: req.params.id }
     });
-    res.json(estudiante);
+    res.json(estudiantes);
 });
 
 router.post('/', cors(), async (req, res) =>{

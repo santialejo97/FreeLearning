@@ -18,25 +18,20 @@ function iniciarPaginaAct(){
 
 async function traerDatos(){
     try{
-        const urlestudiante = 'http://localhost:3000/api/estudiantes/';
+        const urlestudiante = 'http://localhost:3000/api/estudiantes/2';
         const estudianteact = await fetch(urlestudiante, {method:'GET'})
-        const data = await estudianteact.json();    
+        const data = await estudianteact.json(); 
+        console.log(data)   
         
-        data.forEach(element => {
-            const {estudianteNombre, estudianteEmail, estudiantePassword}=element;
             const nombre= document.querySelector('#nombreActualizacion');  
-            nombre.value = estudianteNombre;
+            nombre.value = data.estudianteNombre;
 
             const email= document.querySelector('#emailActualizacion');  
-            email.value = estudianteEmail;
+            email.value = data.estudianteEmail;
 
             const password= document.querySelector('#passwordActualizacion');  
-            password.value = estudiantePassword;
+            password.value = data.estudiantePassword;
 
-            console.log(nombre)
-            console.log(estudianteNombre)
-              
-        });
     }catch (error) {
         console.log(error)
     }
