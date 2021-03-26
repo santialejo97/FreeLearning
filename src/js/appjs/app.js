@@ -22,9 +22,6 @@ function iniciarPagina(){
   // enviar objeto 
   enviarObjeto();
 
-  alertar();
-
-
   // asigna la clase de mostrarseccion actual en la pagina 
   mostrarSeccion();
 
@@ -36,6 +33,7 @@ function iniciarPagina(){
 
   // Capturamos la informacion de formulario Empleado
   capturaDatosEmpleado();
+
 }
 
 // se trae infromacion de la base dedatos y se llena el selector 
@@ -52,6 +50,7 @@ async function llenarSelector(){
   // se recorrer el arreglo de las carreras
   data.forEach(carrera =>{
     const {carreraNombre, carreraId}= carrera;
+    
 
   //se crear elemneto option para agregar al select y se le asigna una carrera de el arreglo
     const option = document.createElement('OPTION');
@@ -241,7 +240,7 @@ if(pagina === 1){
   console.log(pagina)
    // Capturamos la informacion de formulario estudiantes
    capturaDatosEstudiante();
-}else{
+}else {
   console.log(pagina)
   // Capturamos la informacion de formulario empleado
   capturaDatosEmpleado();

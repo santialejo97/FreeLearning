@@ -2,28 +2,32 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 // import ManagementController from '../controller/ManagementController';
 const {estudiante} = require('../../db');
+const cors = require('cors');
+
 
 /* router.get('/',(req, res) => {
     res.send('Entra correctamente, funciona!!');
 }) */
-router.get('/', async (req, res) =>{
+router.get('/', cors(), async (req, res) =>{
     const estudiantes= await estudiante.findAll();
     res.json(estudiantes);
 });
-router.get('/:id', async (req, res) =>{
-    const estudiante= await estudiante.findOne({
+
+router.get('/:id', cors(), async (req, res) =>{
+    const estudiantes= await estudiante.findOne({
         where: { estudianteId: req.params.id }
     });
-    res.json(estudiante);
+    res.json(estudiantes);
 });
 
-router.post('/', async (req, res) =>{
+router.post('/', cors(), async (req, res) =>{
     req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
     const estudiantes= await estudiante.create(req.body);
     res.json(estudiantes);
 });
 
-router.put('/:id', async (req, res) =>{
+router.put('/:id', cors(), async (req, res) =>{
+    console.log(req.params);
     req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
     await estudiante.update(req.body,{
         where: { estudianteId: req.params.id }

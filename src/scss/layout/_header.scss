@@ -13,6 +13,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
     padding: $separacion /2 ;
 
     .titulo{
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     text-transform: uppercase;
