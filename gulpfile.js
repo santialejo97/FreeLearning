@@ -16,6 +16,7 @@ const paths = {
     scss: 'src/scss/**/*.scss',
     js: 'src/js/appjs/*.js',
     jsactualiza: 'src/js/actualiza/*.js',
+    jslogin: 'src/js/login/*.js',
     imagenes: 'src/img/**/*'
 }
 
@@ -50,6 +51,16 @@ function javascriptActualizar() {
       .pipe(dest('./build/js'))
 }
 
+function javascriptLogin() {
+    return src(paths.jslogin)
+      .pipe(sourcemaps.init())
+      .pipe(concat('login.js')) // final output file name
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(dest('./build/js'))
+}
+
 function imagenes() {
     return src(paths.imagenes)
         .pipe(cache(imagemin({ optimizationLevel: 3})))
@@ -71,8 +82,9 @@ function watchArchivos() {
     watch( paths.imagenes, imagenes );
     watch( paths.imagenes, versionWebp );
     watch(paths.jsactualiza, javascriptActualizar);
+    watch(paths.jslogin, javascriptLogin);
 }
   
 exports.css = css;
 exports.watchArchivos = watchArchivos;
-exports.default = parallel(css, javascript, javascriptActualizar, imagenes, versionWebp, watchArchivos ); 
+exports.default = parallel(css, javascript, javascriptLogin, javascriptActualizar, imagenes, versionWebp, watchArchivos ); 
