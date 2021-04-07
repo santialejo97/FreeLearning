@@ -17,6 +17,7 @@ const paths = {
     js: 'src/js/appjs/*.js',
     jsactualiza: 'src/js/actualiza/*.js',
     jslogin: 'src/js/login/*.js',
+    jscambioestado: 'src/js/CambioEstado/*.js',
     imagenes: 'src/img/**/*'
 }
 
@@ -45,6 +46,16 @@ function javascriptActualizar() {
     return src(paths.jsactualiza)
       .pipe(sourcemaps.init())
       .pipe(concat('actuliza.js')) // final output file name
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(dest('./build/js'))
+}
+
+function javascriptCambioEstado() {
+    return src(paths.jscambioestado)
+      .pipe(sourcemaps.init())
+      .pipe(concat('CambioEstado.js')) // final output file name
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(rename({ suffix: '.min' }))
@@ -83,8 +94,9 @@ function watchArchivos() {
     watch( paths.imagenes, versionWebp );
     watch(paths.jsactualiza, javascriptActualizar);
     watch(paths.jslogin, javascriptLogin);
+    watch(paths.jscambioestado, javascriptCambioEstado);
 }
   
 exports.css = css;
 exports.watchArchivos = watchArchivos;
-exports.default = parallel(css, javascript, javascriptLogin, javascriptActualizar, imagenes, versionWebp, watchArchivos ); 
+exports.default = parallel(css, javascript, javascriptLogin, javascriptCambioEstado, javascriptActualizar, imagenes, versionWebp, watchArchivos ); 
