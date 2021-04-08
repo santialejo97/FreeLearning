@@ -4,7 +4,7 @@ const estudiantesModel = require('./models/estudiante');
 const empleadosModel = require('./models/empleado');
 const carrerasModel = require('./models/carrera');
 const forosModel = require('./models/foro');
-const respuestasModel = require('./models/respuesta');
+const respuestasModel = require('./models/respuesta_foro');
 const publicacionesModel = require('./models/publicacion');
 
 const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 

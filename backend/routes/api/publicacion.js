@@ -1,39 +1,43 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 // import ManagementController from '../controller/ManagementController';
-const {estudiante} = require('../../db');
+const {publicacion} = require('../../db');
+const cors = require('cors');
+
 
 /* router.get('/',(req, res) => {
     res.send('Entra correctamente, funciona!!');
 }) */
-router.get('/', async (req, res) =>{
-    const estudiantes= await estudiante.findAll();
-    res.json(estudiantes);
+router.get('/', cors(), async (req, res) =>{
+    const publicacions= await publicacion.findAll();
+    res.json(publicacions);
 });
-router.get('/:id', async (req, res) =>{
-    const estudiantes= await estudiante.findOne({
-        where: { estudianteId: req.params.id }
+
+router.get('/:id', cors(), async (req, res) =>{
+    const publicacions= await publicacion.findOne({
+        where: { publicacionId: req.params.id }
     });
-    res.json(estudiantes);
+    res.json(publicacions);
 });
 
-router.post('/', async (req, res) =>{
-    req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
-    const estudiantes= await estudiante.create(req.body);
-    res.json(estudiantes);
+router.post('/', cors(), async (req, res) =>{
+    req.body.publicacionPassword= bcrypt.hashSync(req.body.publicacionPassword,10);
+    const publicacions= await publicacion.create(req.body);
+    res.json(publicacions);
 });
 
-router.put('/:id', async (req, res) =>{
-    req.body.estudiantePassword= bcrypt.hashSync(req.body.estudiantePassword,10);
-    await estudiante.update(req.body,{
-        where: { estudianteId: req.params.id }
+router.put('/:id', cors(), async (req, res) =>{
+    console.log(req.params);
+    req.body.publicacionPassword= bcrypt.hashSync(req.body.publicacionPassword,10);
+    await publicacion.update(req.body,{
+        where: { publicacionId: req.params.id }
     });
     res.json({success: 'se ha modificado'});
 });
 
 router.delete('/:id', async (req, res) =>{
-    await estudiante.destroy(req.body,{
-        where: { estudianteId: req.params.id }
+    await publicacion.destroy(req.body,{
+        where: { publicacionId: req.params.id }
     });
     res.json({success: 'se ha eliminado'});
 });
