@@ -6,8 +6,8 @@ const carrerasModel = require('./models/carrera');
 const forosModel = require('./models/foro');
 const respuestasModel = require('./models/respuesta_foro');
 const publicacionesModel = require('./models/publicacion');
-
-const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
+//Chef_16032
+const sequelize = new Sequelize('freeLearning','root','',{ 
     host:'localhost', 
     dialect:'mysql'
 });
