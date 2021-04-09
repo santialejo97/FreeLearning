@@ -7,9 +7,10 @@ const forosModel = require('./models/foro');
 const respuestasModel = require('./models/respuesta_foro');
 const publicacionesModel = require('./models/publicacion');
 //Chef_16032
-const sequelize = new Sequelize('freeLearning','root','',{ 
+const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
     host:'localhost', 
-    dialect:'mysql'
+    dialect:'mysql',
+    logging: false
 });
 
 const estudiante= estudiantesModel(sequelize,Sequelize);
@@ -21,6 +22,7 @@ const publicacion= publicacionesModel(sequelize,Sequelize);
 
 sequelize.sync({ force: false})
 .then(()=> {
+    
     console.log('Tablas sincronizadas');
 })
 

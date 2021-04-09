@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 // import ManagementController from '../controller/ManagementController';
-const {
-    estudiante
-} = require('../../db');
+const {estudiante} = require('../../db');
 const cors = require('cors');
-
+const {check,validationResult} = require('express-validator');
+const moment = require('moment');
+const jwt = require('jwt-simple');
 
 /* router.get('/',(req, res) => {
     res.send('Entra correctamente, funciona!!');
@@ -15,27 +15,36 @@ router.get('/', cors(), async (req, res) => {
     res.json(estudiantes);
 });
 
-router.post('/login', cors(), async (req, res) => {
-    const body = req.body;
-    let estudiantes;
-    if (!body.Email || !body.Password) {
-        //mensaje de error
-        estudiantes="Estudiante no encontrado";
-    } else {
-        //let estudiantePassword = bcrypt.hashSync(body.estudiantePassword, 10);
+router.post('/login', [
+    check('Email', 'El campo email es obligatorio').isEmail(),
+    check('Password', 'El campo contraseña es obligatorio').not().isEmpty()
+     ], cors(), async (req, res) => {
 
-        estudiantes = await estudiante.findOne({
-            where: {
-                EstudianteEmail: body.Email,
-                EstudiantePassword: body.Password
-            }
-        });
-        if(estudiantes === null){
-            estudiantes="Estudiante no encontrado, por favor revise los datos nuevamente";
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(422).json({errores: errors.array()})
         }
+
+    const body = req.body;
+    let estudiantes = await estudiante.findOne({
+         where: {
+            estudianteEmail: body.Email
+         }
+    });
+    if(estudiantes){
+        const iguales = bcrypt.compareSync(body.Password, estudiantes.estudiantePassword);
+        
+        if(iguales){
+        res.json({ success: createToken(estudiantes)});
+        }else{
+        res.json({ error: 'Error en constraseña'});
+        }
+    }else{
+        res.json({ error: 'Error en usuario y/o constraseña'});
     }
-    res.json(estudiantes);
+    
 });
+
 
 router.get('/:id', cors(), async (req, res) => {
     const estudiantes = await estudiante.findOne({
@@ -75,4 +84,12 @@ router.delete('/:id', async (req, res) => {
         success: 'se ha eliminado'
     });
 });
+const createToken =(estudiantes)=>{
+    const payload = {
+        usuarioId: estudiantes.estudianteId,
+        createdAt: moment().unix(),
+        expiredAt: moment().add(5,'minutes').unix()
+    }
+    return jwt.encode(payload, 'frase secreta');
+}
 module.exports = router;

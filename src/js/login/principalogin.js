@@ -64,10 +64,10 @@ async function conexion() {
             .then(response => response.json())
             .then(data => {
 
-                if (typeof data === 'string') {
-                    console.log(data)
+                if (data.error) {
+                    console.log(data.error)
                 } else {
-
+                    console.log(data.success)
                 }
             })
 

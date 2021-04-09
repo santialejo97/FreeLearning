@@ -5,6 +5,13 @@ const {
     empleado
 } = require('../../db');
 const cors = require('cors');
+const {
+    check,
+    validationResult
+} = require('express-validator');
+
+const moment = require('moment');
+const jwt = require('jwt-simple');
 
 
 /* router.get('/',(req, res) => {
@@ -15,27 +22,44 @@ router.get('/', cors(), async (req, res) => {
     res.json(empleados);
 });
 
-router.post('/login', cors(), async (req, res) => {
-    const body = req.body;
-    let empleados;
-    if (!body.Email || !body.Password) {
-        //mensaje de error
-        empleados="empleado no encontrado";
-    } else {
-        //let empleado = bcrypt.hashSync(body.empleadoPassword, 10);
+router.post('/login', [
+    check('Email', 'El campo email es obligatorio').isEmail(),
+    check('Password', 'El campo contraseña es obligatorio').not().isEmpty()
+     ], cors(), async (req, res) => {
 
-        empleados = await empleado.findOne({
-            where: {
-                EmpleadoEmail: body.Email,
-                EmpleadoPassword: body.Password
-            }
-        });
-        if(empleados === null){
-            empleados="Empleado no encontrado, por favor revise los datos nuevamente";
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(422).json({errores: errors.array()})
         }
+
+    const body = req.body;
+    let empleados = await empleado.findOne({
+         where: {
+            empleadoEmail: body.Email
+         }
+    });
+    if(empleados){
+        const iguales = bcrypt.compareSync(body.Password, empleados.empleadoPassword);
+        
+        if(iguales){
+        res.json({ success: createToken(empleados)});
+        }else{
+        res.json({ error: 'Error en constraseña'});
+        }
+    }else{
+        res.json({ error: 'Error en usuario y/o constraseña'});
     }
-    res.json(empleados);
+    
 });
+
+const createToken =(empleados)=>{
+    const payload = {
+        usuarioId: empleados.empleadoId,
+        createdAt: moment().unix(),
+        expiredAt: moment().add(5,'minutes').unix()
+    }
+    return jwt.encode(payload, 'frase secreta');
+}
 
 router.get('/:id', cors(), async (req, res) => {
     const empleados = await empleado.findOne({

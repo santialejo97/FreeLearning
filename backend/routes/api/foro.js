@@ -21,7 +21,7 @@ router.get('/:id', cors(), async (req, res) =>{
 });
 
 router.post('/', cors(), async (req, res) =>{
-//    req.body.foroPassword= bcrypt.hashSync(req.body.foroPassword,10);
+    req.body.fk_estudianteId= req.usuarioId;
     const foros= await foro.create(req.body);
     res.json(foros);
 });
