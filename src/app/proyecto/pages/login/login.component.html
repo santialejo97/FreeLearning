@@ -1,0 +1,43 @@
+<div class="p-grid p-jc-center">
+  <div class="p-col-6 p-mt-6">
+    <p-card header="LOGIN">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label class="p-text-bold p-text-capitalize" for="Correo"
+            >Correr</label
+          >
+          <input type="text" pInputText placeholder='Ingresar Correo' />
+        </div>
+
+        <div class="p-field">
+          <label class="p-text-bold p-text-capitalize" for="Correo">
+            {{'password' | titlecase}}
+          </label>
+          <p-password [toggleMask]="true" placeholder='Ingresar password'></p-password>
+        </div>
+
+        <div class="p-field">
+          <div class="p-col-4">
+            <label for="tipo" class="p-text-bold">Empleado</label>
+            <div class="p-mt-3">
+              <p-selectButton
+                [options]="stateOptions"
+                optionLabel="label"
+                optionValue="value"
+              ></p-selectButton>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-col-6 p-mx-auto">
+          <button
+            pButton
+            class="p-button-info"
+            label="Ingresar"
+            style="background: var(--bluegray-600)"
+          ></button>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

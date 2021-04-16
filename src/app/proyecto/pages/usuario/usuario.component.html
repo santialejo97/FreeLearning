@@ -1,0 +1,106 @@
+<div class="p-grid p-mt-6">
+  <div class="p-col-6">
+    <p-fieldset legend="Estudiante" [toggleable]="true">
+      <div class="p-col-12">
+        <form class="Estudiante" (ngSubmit)="agregarEstudiante()">
+          <label class="p-text-bold">{{ "username" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" pInputText placeholder="Username Empleado" />
+          </div>
+          <label class="p-text-bold">{{ "correo" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"
+              ><i class="fas fa-envelope-square"></i
+            ></span>
+            <input type="text" pInputText placeholder="Username Empleado" />
+          </div>
+          <label class="p-text-bold">{{ "password" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <p-password [toggleMask]="true"></p-password>
+          </div>
+          <label class="p-text-bold">{{ "carrera" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"><i class="fas fa-award"></i></span>
+            <p-dropdown
+              placeholder="Seleccione Carrera"
+              optionLabel="name"
+              [showClear]="true"
+            ></p-dropdown>
+          </div>
+          <div class="p-field-checkbox p-m-3">
+            <p-checkbox inputId="binary"></p-checkbox>
+            <label>checked</label>
+          </div>
+          <div class="p-field-checkbox p-m-3 p-jc-center">
+            <button
+              type="submit"
+              pButton
+              label="{{ 'registrar' | titlecase }}"
+              icon="fas fa-user-plus"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col-6">
+    <p-fieldset legend="Empleado" [toggleable]="true">
+      <div class="p-col-12">
+        <form class="Empleado" (ngSubmit)="agregarEmpleado()">
+          <label class="p-text-bold">{{ "username" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input
+              type="text"
+              pInputText
+              placeholder="Username Empleado"
+              name="username"
+              [(ngModel)]="usuario.nombre"
+            />
+          </div>
+          <label class="p-text-bold">{{ "correo" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"
+              ><i class="fas fa-envelope-square"></i
+            ></span>
+            <input
+              type="text"
+              pInputText
+              placeholder="Ingresar Email"
+              name="correo"
+              [(ngModel)]="usuario.email"
+            />
+          </div>
+          <label class="p-text-bold">{{ "password" | titlecase }}</label>
+          <div class="p-inputgroup p-m-3">
+            <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <p-password
+              [toggleMask]="true"
+              name="password"
+              [(ngModel)]="usuario.contrasecha"
+            ></p-password>
+          </div>
+          <div class="p-field-checkbox p-m-3">
+            <p-checkbox
+              inputId="binary"
+              name="politicas"
+              [(ngModel)]="checked"
+            ></p-checkbox>
+            <label for="binary">{{ checked }}</label>
+          </div>
+          <div class="p-field-checkbox p-m-3 p-jc-center">
+            <button
+              type="submit"
+              pButton
+              label="{{ 'registrar' | titlecase }}"
+              icon="fas fa-user-plus"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </p-fieldset>
+  </div>
+</div>
