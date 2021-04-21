@@ -1,0 +1,25 @@
+.formulario_Login{
+    width: 100%;
+    margin-top: $separacion/3;
+    .campo{
+        display: flex;
+        align-items: center;
+        padding: $separacion/4;
+        gap: $separacion / 4;
+        
+        label{
+            color: white;
+            flex: 0 0 15rem;
+            text-align: right;
+        }
+        input{
+            padding: 1rem;
+        }
+    }
+    .campotitulo{
+        text-align: left;
+        color: white;
+        text-transform: uppercase;
+        
+    }
+}

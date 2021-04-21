@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../build/css/app.css">
+    <title>Comunidad Freelearning</title>
+</head>
+<body>
+    <header class="header">
+        <div class="barra">
+            <a class="titulo" href="index.html">FreeLearning 
+                <span class="titulo_Universidad">Universidad Manuela Beltran</span></a>
+                <div class="navegador_header">
+                    <nav class="navegador">
+                        <a class="enlace_navegador" href="#">&#988; &#91; Home &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Grupos &#93;</a>
+                        <a class="enlace_navegador" href="#">&#988; &#91; Login &#93;</a>
+                        <a class="enlace_navegador" href="formularioActualizacion.html">&#988; &#91; Cuenta &#93;</a>
+                    </nav>
+                </div>
+        </div>
+    </header>
+
+        <div class="secciones contenedor">
+            <nav class="tabs">
+                <button class="boton" type="button" data-pagina="1">Estudiantes</button>
+                <button class="boton" type="button" data-pagina="2">Empleados</button>
+            </nav>
+        </div>
+    <div class="formularios">
+        <div class="contenedor seccion" id="pagina-1"> 
+            <!-- formulario Estudiantes -->
+            <form class="mensaje1 formulario_usuarios" >
+                <div class="campo">
+                <label for="nombre">Nombre Usuario</label>
+                <input id="nombre" type="text" placeholder="ingrese nombre completo" required>
+                </div>
+                <div class="campo">
+                <label for="email">Correo</label>
+                <input type="email" id="email" placeholder="Ingresa el Email" required>
+                </div>
+                <div class="campo">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="ingrese una contraseña" required>
+                </div>
+                <div class="campo">
+                <label for="carrera">Carrera</label>
+                <!-- <input type="text" id="carrera" placeholder="Ingresar Carrera Universidad"> -->
+                <select id="carrera" class="selector">
+                    <option disabled selected>--Seleccione Carrera--</option>
+                </select>
+                </div>  
+            </form>
+        </div>
+
+        <div class="contenedor seccion" id="pagina-2"> 
+            <!-- formulario Empleados -->
+            <form class="mensaje2 formulario_usuarios" >
+                <div class="campo">
+                <label for="nombreempleado">Nombre Empleado</label>
+                <input id="nombreempleado" type="text" placeholder="ingrese nombre completo" required>
+                </div>
+                <div class="campo">
+                <label for="emailempleado">Correo</label>
+                <input type="email" id="emailempleado" placeholder="Ingresa el Email" required>
+                </div>
+                <div class="campo">
+                <label for="passwordempleado">Contraseña</label>
+                <input type="password" id="passwordempleado" placeholder="ingrese una contraseña" required>
+                </div>
+            </form>
+        </div>
+        <div class="enlace">
+            <input type="checkbox" name="mycheckbox" id="opt-in" value="1">
+            <label for="opt-in"><a class="enlace-texto" href="#">Aceptar politicas de manejo de datos</a></label>
+        </div>  
+            <div class="boton_principal contenedor">
+             <input type="button" id="envio" value="Envio" class="envio">
+            </div>
+    </div>
+
+
+        <script src="../build/js/bundle.min.js"></script>
+</body>
+</html>
