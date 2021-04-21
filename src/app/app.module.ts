@@ -7,6 +7,9 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComunidadModule } from './proyecto/comunidad.module';
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +19,8 @@ import { ComunidadModule } from './proyecto/comunidad.module';
     AppRoutingModule,
     ComunidadModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
