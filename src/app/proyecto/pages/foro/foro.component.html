@@ -1,0 +1,33 @@
+<div class="p-grid p-jc-center">
+    <div class="p-col-8 p-mt-6">
+      <p-card header="Foro">
+        <div class="p-fluid">
+          <form (ngSubmit)='miForo' #miForo='ngForm'>
+            <div class="p-field">
+
+
+              <label class="p-text-bold p-text-capitalize" for="descripcion"
+                >Deja aqui tu pregunta</label
+              >
+              <input type="text"
+               pInputText 
+               placeholder='Pregunta' 
+               ngModel
+               name="descripcion"
+               required />
+            </div>
+    
+            <div class="p-col-6 p-mx-auto">
+              <button
+                pButton
+                type="submit"
+                class="p-button-info"
+                label="Crear"
+                style="background: var(--bluegray-600)"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </p-card>
+    </div>
+  </div>

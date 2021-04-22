@@ -2,41 +2,57 @@
   <div class="p-col-6 p-mt-6">
     <p-card header="LOGIN">
       <div class="p-fluid">
-        <div class="p-field">
-          <label class="p-text-bold p-text-capitalize" for="Correo"
-            >Correr</label
-          >
-          <input type="text" pInputText placeholder='Ingresar Correo' />
-        </div>
-
-        <div class="p-field">
-          <label class="p-text-bold p-text-capitalize" for="Correo">
-            {{'password' | titlecase}}
-          </label>
-          <p-password [toggleMask]="true" placeholder='Ingresar password'></p-password>
-        </div>
-
-        <div class="p-field">
-          <div class="p-col-4">
-            <label for="tipo" class="p-text-bold">Empleado</label>
-            <div class="p-mt-3">
-              <p-selectButton
-                [options]="stateOptions"
-                optionLabel="label"
-                optionValue="value"
-              ></p-selectButton>
+        <form (ngSubmit)='ingreso()'>
+          <div class="p-field">
+            <label class="p-text-bold p-text-capitalize" for="Correo"
+              >Correr</label
+            >
+            <input type="text"
+             pInputText 
+             placeholder='Ingresar Correo' 
+             [(ngModel)]='login.Email' 
+             name="email"
+             required />
+          </div>
+  
+          <div class="p-field">
+            <label class="p-text-bold p-text-capitalize" for="Correo">
+              {{'password' | titlecase}}
+            </label>
+            <p-password [toggleMask]="true"
+             placeholder='Ingresar password' 
+             [(ngModel)]='login.Password' 
+             name="password" 
+             required></p-password>
+          </div>
+  
+          <div class="p-field">
+            <div class="p-col-4">
+              <label for="tipo" class="p-text-bold">Empleado</label>
+              <div class="p-mt-3">
+                <p-selectButton
+                  [options]="stateOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  [(ngModel)]='tipo' name="tipo"
+                ></p-selectButton>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="p-col-6 p-mx-auto">
-          <button
-            pButton
-            class="p-button-info"
-            label="Ingresar"
-            style="background: var(--bluegray-600)"
-          ></button>
-        </div>
+          <div class="p-col-6 p-mx-auto">
+            <a href="">Registrar una cuenta </a>
+          </div>
+           
+          <div class="p-col-6 p-mx-auto">
+            <button
+              pButton
+              type="submit"
+              class="p-button-info"
+              label="Ingresar"
+              style="background: var(--bluegray-600)"
+            ></button>
+          </div>
+        </form>
       </div>
     </p-card>
   </div>

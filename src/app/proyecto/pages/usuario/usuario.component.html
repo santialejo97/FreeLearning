@@ -2,36 +2,60 @@
   <div class="p-col-6">
     <p-fieldset legend="Estudiante" [toggleable]="true">
       <div class="p-col-12">
-        <form class="Estudiante" (ngSubmit)="agregarEstudiante()">
+        <form class="Estudiante" 
+        (ngSubmit)="agregarEstudiante()" 
+        autocomplete="off" >
           <label class="p-text-bold">{{ "username" | titlecase }}</label>
           <div class="p-inputgroup p-m-3">
             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-            <input type="text" pInputText placeholder="Username Empleado" />
+
+            <input type="text" 
+            pInputText
+             placeholder="Username Empleado" 
+             [(ngModel)]='usuario.estudianteNombre' 
+             name='name' />
           </div>
+
           <label class="p-text-bold">{{ "correo" | titlecase }}</label>
           <div class="p-inputgroup p-m-3">
             <span class="p-inputgroup-addon"
               ><i class="fas fa-envelope-square"></i
             ></span>
-            <input type="text" pInputText placeholder="Username Empleado" />
+
+            <input type="text" 
+            pInputText 
+            placeholder="Correo Estudiante" 
+            [(ngModel)]='usuario.estudianteEmail'
+            name='correo' />
+
           </div>
           <label class="p-text-bold">{{ "password" | titlecase }}</label>
           <div class="p-inputgroup p-m-3">
             <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
-            <p-password [toggleMask]="true"></p-password>
+
+            <p-password 
+            [toggleMask]="true" 
+            [(ngModel)]='usuario.estudiantePassword' 
+            name='password'
+            ></p-password>
+
           </div>
           <label class="p-text-bold">{{ "carrera" | titlecase }}</label>
           <div class="p-inputgroup p-m-3">
             <span class="p-inputgroup-addon"><i class="fas fa-award"></i></span>
             <p-dropdown
               placeholder="Seleccione Carrera"
-              optionLabel="name"
+              optionLabel="carreraNombre"
               [showClear]="true"
+              [options]='carreras'
+              [(ngModel)]='selector'
+              name='carrera'
             ></p-dropdown>
           </div>
           <div class="p-field-checkbox p-m-3">
-            <p-checkbox inputId="binary"></p-checkbox>
-            <label>checked</label>
+            <!-- <checkbox  [(ngModel)]='politicas' name='politica' value='true' ></checkbox> -->
+            <input  type="checkbox" [(ngModel)]='politicas' name='politica'  >
+            <label>Aceptas las politicas de privacidad</label>
           </div>
           <div class="p-field-checkbox p-m-3 p-jc-center">
             <button
@@ -49,7 +73,7 @@
   <div class="p-col-6">
     <p-fieldset legend="Empleado" [toggleable]="true">
       <div class="p-col-12">
-        <form class="Empleado" (ngSubmit)="agregarEmpleado()">
+        <form class="Empleado" (ngSubmit)="agregarEmpleado()" autocomplete="off">
           <label class="p-text-bold">{{ "username" | titlecase }}</label>
           <div class="p-inputgroup p-m-3">
             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -58,7 +82,7 @@
               pInputText
               placeholder="Username Empleado"
               name="username"
-              [(ngModel)]="usuario.nombre"
+              [(ngModel)]="empleado.empleadoNombre"
             />
           </div>
           <label class="p-text-bold">{{ "correo" | titlecase }}</label>
@@ -71,7 +95,7 @@
               pInputText
               placeholder="Ingresar Email"
               name="correo"
-              [(ngModel)]="usuario.email"
+              [(ngModel)]="empleado.empleadoEmail"
             />
           </div>
           <label class="p-text-bold">{{ "password" | titlecase }}</label>
@@ -80,16 +104,12 @@
             <p-password
               [toggleMask]="true"
               name="password"
-              [(ngModel)]="usuario.contrasecha"
+              [(ngModel)]="empleado.empleadoPassword"
             ></p-password>
           </div>
           <div class="p-field-checkbox p-m-3">
-            <p-checkbox
-              inputId="binary"
-              name="politicas"
-              [(ngModel)]="checked"
-            ></p-checkbox>
-            <label for="binary">{{ checked }}</label>
+            <input  type="checkbox" [(ngModel)]='politicas' name='politica'  >
+            <label for="binary">Aceptas las politicas de privacidad</label>
           </div>
           <div class="p-field-checkbox p-m-3 p-jc-center">
             <button

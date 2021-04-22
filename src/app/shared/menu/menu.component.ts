@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -30,6 +31,11 @@ export class MenuComponent implements OnInit {
           },
         ],
       },
+      {
+        label: 'Foros',
+        icon: 'pi pi-comment',
+        routerLink: 'foro'
+      }
     ];
   }
 }

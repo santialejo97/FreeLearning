@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../../../services/service.service';
+import { Login } from '../../interfaces/usuario.interfeces';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -8,14 +12,42 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   stateOptions: any[] = [];
 
-  value1: string = 'on';
+  login: Login={
+    Email: '',
+    Password:''
+  }
+  tipo!: string;
+  
+  value1: string = '1';
 
-  constructor() {}
+  constructor(private services:ServiceService, private router: Router ) {}
 
   ngOnInit() {
     this.stateOptions = [
-      { label: 'Off', value: 'off' },
-      { label: 'On', value: 'on' },
+      { label: 'Estudiante', value: '1' },
+      { label: 'Empleado', value: '2' },
     ];
   }
+
+  ingreso(){
+    if(this.tipo == '1'){
+      this.services.postLoginEstudiante(this.login).subscribe(respo=>{
+        console.log('Bienvenido estudiante')
+       
+      })
+    }else if(this.tipo == '2'){
+      this.services.postLoginEmpleados(this.login).subscribe(respo=>{
+        if(respo.success){
+          this.services.mostrarSnackBar('Bienvenido')
+          this.router.navigate([''])
+         }else{
+          this.services.mostrarSnackBar('Validar Información')
+         }
+      })
+    }else{
+      alert('Error tipo no valido')
+    }
+  }
+  
+
 }
