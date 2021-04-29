@@ -4,6 +4,8 @@ export interface Estudiante {
   estudiantePassword: string;
   fk_carreraId: number;
   estudiantePoliticaDatos: number ;
+  estudianteId?: number;
+  fk_estadoId?: number;
 }
 
 export interface Empleado {

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComunidadModule } from './proyecto/comunidad.module';
 
 import { AppComponent } from './app.component';
+import { EstadoPipe } from './estado.pipe';
 
 
 

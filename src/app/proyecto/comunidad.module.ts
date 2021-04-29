@@ -9,6 +9,7 @@ import { EstadoComponent } from './pages/estados/estado.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { ForoComponent } from './pages/foro/foro.component';
+import { EstadoPipe } from '../estado.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ForoComponent } from './pages/foro/foro.component';
     LoginComponent,
     EstadoComponent,
     ForoComponent,
+    EstadoPipe
   ],
   imports: [CommonModule, PrimengModule, FormsModule, MaterialModule],
 })

@@ -32,6 +32,10 @@ export class ServiceService {
     return this.http.post<Empleado>(`${this.urlBase}/empleados`, user)
   }
 
+  getEstudiante(): Observable<Estudiante[]>{
+    return this.http.get<Estudiante[]>(`${this.urlBase}/estudiantes`)
+  }
+
   //login
 
   postLoginEstudiante(user:Login): Observable<Login>{

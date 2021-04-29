@@ -23,6 +23,11 @@ export class MenuComponent implements OnInit {
         routerLink: 'creacion',
       },
       {
+        label: 'Cambio Estados',
+        icon: 'pi pi-lock-open',
+        routerLink: 'estado'
+      },
+      {
         label: 'Grupos',
         icon: 'pi pi-comments',
         items: [

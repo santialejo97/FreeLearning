@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-foro',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForoComponent implements OnInit {
 
+  @ViewChild("miForo") form!:NgForm;
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  crear(){
+    console.log(this.form.controls.descripcion.value)
   }
 
 }
