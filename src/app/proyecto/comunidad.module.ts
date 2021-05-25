@@ -3,23 +3,34 @@ import { CommonModule } from '@angular/common';
 import { PrimengModule } from '../primeng/primeng.module';
 
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { LoginComponent } from '../auth/login/login.component';
+import { UsuarioComponent } from '../auth/usuario/usuario.component';
 import { EstadoComponent } from './pages/estados/estado.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { ForoComponent } from './pages/foro/foro.component';
 import { EstadoPipe } from '../estado.pipe';
+import { DatosComponent } from './pages/datos/datos.component';
+import { ComunidadRoutingModule } from './comunidad-routing.module';
+import { PublicationsComponent } from './pages/publications/publications.component';
 
 @NgModule({
   declarations: [
-    UsuarioComponent,
     HomeComponent,
-    LoginComponent,
     EstadoComponent,
     ForoComponent,
-    EstadoPipe
+    EstadoPipe,
+    DatosComponent,
+    PublicationsComponent,
+    
   ],
-  imports: [CommonModule, PrimengModule, FormsModule, MaterialModule],
+  imports: [
+    CommonModule, 
+    PrimengModule, 
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    ComunidadRoutingModule
+  ],
 })
 export class ComunidadModule {}

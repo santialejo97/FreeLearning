@@ -46,4 +46,6 @@ export class ServiceService {
     return this.http.post<Login>(`${this.urlBase}/empleados/login`, user)
   }
 
+  
+
 }

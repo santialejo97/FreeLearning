@@ -9,6 +9,7 @@ import { ComunidadModule } from './proyecto/comunidad.module';
 
 import { AppComponent } from './app.component';
 import { EstadoPipe } from './estado.pipe';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -18,7 +19,7 @@ import { EstadoPipe } from './estado.pipe';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    ComunidadModule,
+    AuthModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],

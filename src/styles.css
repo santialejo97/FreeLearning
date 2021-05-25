@@ -1,9 +1,13 @@
 html,
 body {
-  background: var(--surface-b);
+  background: var(--surface-a);
   font-family: var(--font-family);
   color: var(--blue-50);
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.header{
+  background-color: var(--surface-d);
+}

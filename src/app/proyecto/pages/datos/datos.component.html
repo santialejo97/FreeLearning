@@ -1,0 +1,62 @@
+
+<div class="row">
+    <div class="col m-5 text-center fw-bold">
+        <h1>{{title | uppercase}} </h1>
+    </div>
+</div>
+
+<div class="row p-jc-center">
+    <div class="col-6  ms-5">
+        <form (ngSubmit)='cambios()' autocomplete="off" [formGroup]='miFormulario'>
+            <!-- Campo de nombre -->
+            <div class="m-4 row">
+                <label class="col-sm-3 col-form-label">{{'nombre de usuario' | titlecase}}</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                     class="form-control" 
+                     placeholder="Nuevo nombre de usuario"
+                     formControlName='user'>
+
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('user')" >
+                    Debe de ser de 3 letras</span>
+                </div>
+            </div>
+
+            <div class="m-4 row">
+                <label class="col-sm-3 col-form-label">{{'correo electronico' | titlecase}}</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                     class="form-control" 
+                     placeholder="Nuevo Correo"
+                     formControlName='email'>
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('email')" >
+                    campo obligatorio</span>
+                </div>
+            </div>
+
+            <div class="m-4 row">
+                <label class="col-sm-3 col-form-label">{{'contraseña' | titlecase}}</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                     class="form-control" 
+                     placeholder="Nueva Contraseña"
+                     formControlName='password'>
+                     <span class="form-text text-danger"
+                     *ngIf="campoEsValido('password')" >
+                    campo obligatorio</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary float-end" 
+                    type="submit"
+                    [disabled]='miFormulario.invalid'
+                    > Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

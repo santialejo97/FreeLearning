@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
-import { Estudiante, Carrera, Empleado } from '../../interfaces/usuario.interfeces';
-import { ServiceService } from '../../../services/service.service';
+import { Estudiante, Carrera, Empleado } from '../../proyecto/interfaces/usuario.interfeces';
+import { ServiceService } from '../../services/service.service';
 import { Router } from '@angular/router';
 
 

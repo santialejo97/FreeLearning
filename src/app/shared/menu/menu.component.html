@@ -1,4 +1,4 @@
-<p-menubar [model]="items">
+<!-- <p-menubar [model]="items">
   <button
     pButton
     icon="pi pi-sign-in"
@@ -7,4 +7,57 @@
     routerLink="login"
     style="background: var(--bluegray-600)"
   ></button>
-</p-menubar>
+</p-menubar> -->
+<mat-sidenav-container fullscreen >
+  <mat-sidenav #sidenav mode="over" class="header">
+
+    <mat-toolbar class="header">
+      <button mat-icon-button (click)="sidenav.toggle()">
+       <mat-icon>widgets</mat-icon>
+      </button>
+      <h1>FreeLearning</h1>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a routerLink="./comunidad/home" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>groups</mat-icon>
+      <span>{{"home" |titlecase}}</span></a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a routerLink="./comunidad/foro" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>record_voice_over</mat-icon>
+      <span>{{"creación foro" |titlecase}}</span></a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a routerLink="./comunidad/estado" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>how_to_reg</mat-icon>
+      <span>{{"estado usuarios" |titlecase}}</span></a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a routerLink="./comunidad/publications" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>try</mat-icon>
+      <span>{{"publicaciones" |titlecase}}</span></a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a routerLink="./comunidad/datos" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>settings</mat-icon>
+      <span>{{"settings" |titlecase}}</span></a>
+    </mat-nav-list>
+
+   
+
+  </mat-sidenav>
+
+  <mat-toolbar class="header">
+    <button mat-icon-button (click)="sidenav.toggle()">
+     <mat-icon>widgets</mat-icon>
+    </button>
+    <h1>FreeLearning</h1>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

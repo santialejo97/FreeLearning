@@ -28,3 +28,9 @@ export interface Login{
   success?: string
 }
 
+export interface Cambio{
+  user: string,
+  email: string,
+  password: string
+}
+
