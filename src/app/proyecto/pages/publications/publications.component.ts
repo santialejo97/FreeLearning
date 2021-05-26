@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-publications',
@@ -13,4 +14,12 @@ export class PublicationsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  crear(){
+
+  }
+
+  
+
 }
+
+

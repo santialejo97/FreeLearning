@@ -1,1 +1,27 @@
-<p>publications works!</p>
+
+<div class="p-grid p-jc-center">
+    <div class="p-col-10 p-mt-6">
+      <p-card header="Nueva Publicación">
+        <div class="p-fluid">
+          <form (ngSubmit)='crear()' #miForo='ngForm'>
+            <div class="p-field">
+
+
+              <label class="p-text-bold p-text-capitalize p-mb-3" for="descripcion"
+                >¿Que desea compartir, el dia de hoy?</label>
+
+               <textarea [rows]="3" [cols]="140" pInputTextarea autoResize="autoResize"></textarea>
+
+            </div>
+    
+            <div class="p-col-4 right">
+                <span class="p-buttonset">
+                    <button pButton type="button" label="Publicar" icon="pi pi-check" class="p-mr-2"></button>
+                    <button pButton type="button" label="Cancelar" icon="pi pi-times"></button>
+                </span>
+            </div>
+          </form>
+        </div>
+      </p-card>
+    </div>
+  </div>
