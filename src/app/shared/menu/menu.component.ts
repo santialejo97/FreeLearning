@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-
-
+import { Component } from '@angular/core';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styles: [],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent  {
   
-
-  ngOnInit() {
+  get user(){
+    return this.authServices.User;
   }
+  constructor(private authServices: ServiceService){}
+
+ 
 }

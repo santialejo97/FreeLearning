@@ -34,7 +34,6 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicio.getCarrera().subscribe(resp =>{
-      console.log(resp)
       this.carreras= resp
     })
   }
@@ -46,10 +45,9 @@ export class UsuarioComponent implements OnInit {
       this.usuario.estudiantePoliticaDatos= 0
     }
     this.usuario.fk_carreraId= this.selector.carreraId;
-    console.log(this.usuario)
     this.servicio.postEstudiante(this.usuario).subscribe(resp =>{
       this.servicio.mostrarSnackBar('Estudiante Creado') //poner sankBar 
-      this.router.navigate([''])
+      this.router.navigate(['/auth/login'])
     })
   }
 

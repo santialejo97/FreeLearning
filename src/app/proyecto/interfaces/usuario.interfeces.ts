@@ -25,7 +25,8 @@ export interface Carrera {
 export interface Login{
   Email: string,
   Password: string,
-  success?: string
+  success?: string,
+  ok?: boolean 
 }
 
 export interface Cambio{
@@ -34,3 +35,14 @@ export interface Cambio{
   password: string
 }
 
+export interface Response{
+  ok: boolean,
+  token: string,
+  name?: string,
+  msg?: string 
+}
+
+export interface User{
+  name: string,
+  msg: string 
+}

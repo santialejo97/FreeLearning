@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, resolveForwardRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Carrera, Estudiante, Empleado, Login } from '../proyecto/interfaces/usuario.interfeces';
+import { Carrera, Estudiante, Empleado, Login, Response, User } from '../proyecto/interfaces/usuario.interfeces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,11 @@ import { Carrera, Estudiante, Empleado, Login } from '../proyecto/interfaces/usu
 export class ServiceService {
 
   private urlBase: string= environment.baseUrl;
+  private _User!: User;
+
+  get User(){
+    return {...this._User}
+  }
 
   constructor(private http: HttpClient, private snackBar:MatSnackBar) { }
 
@@ -24,8 +30,13 @@ export class ServiceService {
     return this.http.get<Carrera[]>(`${this.urlBase}/carreras`);
   }
   // Registro 
-  postEstudiante(user: Estudiante): Observable<Estudiante>{
-    return this.http.post<Estudiante>(`${this.urlBase}/estudiantes`, user)
+  postEstudiante(user: Estudiante){
+    return this.http.post<Response>(`${this.urlBase}/estudiantes`, user)
+          .pipe(
+            tap(({ok,token})=>{
+              console.log(ok, token);
+            })
+          )
   }
 
   postEmpleado(user: Empleado): Observable<Empleado>{
@@ -38,14 +49,38 @@ export class ServiceService {
 
   //login
 
-  postLoginEstudiante(user:Login): Observable<Login>{
+  postLoginEstudiante(user:Login){
     return this.http.post<Login>(`${this.urlBase}/estudiantes/login`, user)
+          .pipe(
+            tap(({ok, success}) =>{
+              if(ok){
+                localStorage.setItem('token', success!)
+              }
+            }),
+            map(resp => resp.ok),
+            catchError(err => err.error.error)
+          )
   }
 
   postLoginEmpleados(user:Login): Observable<Login>{
     return this.http.post<Login>(`${this.urlBase}/empleados/login`, user)
   }
 
-  
+  validarToken(): Observable<boolean>{
+    const headers= new HttpHeaders()
+              .set('user-token', localStorage.getItem('token') || '')
+    return this.http.get<Response>(`${this.urlBase}/renew/`,{ headers })
+                .pipe(
+                  map(resp =>{
+                    localStorage.setItem('token', resp.token)
+                    this._User={
+                      name: resp.name!,
+                      msg: resp.msg!
+                    } 
+                    return resp.ok;
+                  }),
+                  catchError(err=> of(false))
+                )
+  }
 
 }
