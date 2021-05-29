@@ -1,27 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ServiceService } from '../../../services/service.service';
+import { Foro } from '../../interfaces/usuario.interfeces';
 
 @Component({
   selector: 'app-foro',
   templateUrl: './foro.component.html',
-  styles: [
-    `.example-header-image {
-      background-image: url('https://holatelcel.com/wp-content/uploads/2020/03/deadpool.jpg');
-      background-size: cover;
-    }`
-  ]
+  styles: []
 })
 export class ForoComponent implements OnInit {
 
   @ViewChild("miForo") form!:NgForm;
+  foro!: Foro;
+  foros!: Foro[];
   
-  constructor() { }
+  get User(){
+    return this.authService.User;
+  }
+  
+  constructor(private authService: ServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.authService.getForos().subscribe(resp=> {
+      this.foros= resp;
+    })
   }
 
   crear(){
     console.log(this.form.controls.descripcion.value)
+    this.foro={
+      foroDescripcion: this.form.controls.descripcion.value
+    }
+    this.authService.postForos(this.foro).subscribe(resp=>{
+      
+    })
   }
 
 }

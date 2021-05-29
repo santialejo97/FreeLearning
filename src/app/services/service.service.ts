@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Carrera, Estudiante, Empleado, Login, Response, User } from '../proyecto/interfaces/usuario.interfeces';
+import { Carrera, Estudiante, Empleado, Login, Response, User, Foro } from '../proyecto/interfaces/usuario.interfeces';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,7 @@ export class ServiceService {
 
   //login
 
-  postLoginEstudiante(user:Login){
+  postLoginEstudiante(user:Login): Observable<boolean>{
     return this.http.post<Login>(`${this.urlBase}/estudiantes/login`, user)
           .pipe(
             tap(({ok, success}) =>{
@@ -57,8 +57,8 @@ export class ServiceService {
                 localStorage.setItem('token', success!)
               }
             }),
-            map(resp => resp.ok),
-            catchError(err => err.error.error)
+            map(resp => resp.ok!),
+            catchError(err => of(false))
           )
   }
 
@@ -66,21 +66,45 @@ export class ServiceService {
     return this.http.post<Login>(`${this.urlBase}/empleados/login`, user)
   }
 
+  postForos(foro: Foro){
+    const headers= new HttpHeaders()
+              .set('user-token', localStorage.getItem('token') || '')
+    return this.http.post<Foro>(`${this.urlBase}/foros`, foro, {headers})
+            .pipe(
+              tap(resp=> {
+                console.log(resp);
+              })
+            )
+  }
+
+  getForos(): Observable<Foro[]>{
+    const headers= new HttpHeaders()
+              .set('user-token', localStorage.getItem('token') || '')
+    return this.http.get<Foro[]>(`${this.urlBase}/foros/creador/`, {headers});
+  }
+
   validarToken(): Observable<boolean>{
     const headers= new HttpHeaders()
               .set('user-token', localStorage.getItem('token') || '')
     return this.http.get<Response>(`${this.urlBase}/renew/`,{ headers })
                 .pipe(
+                  tap(resp=>{
+                    if(resp.ok === true){
+                      localStorage.setItem('token', resp.token)
+                      this._User={
+                        name: resp.name!,
+                        msg: resp.msg!
+                      } 
+                    }
+                  }),
                   map(resp =>{
-                    localStorage.setItem('token', resp.token)
-                    this._User={
-                      name: resp.name!,
-                      msg: resp.msg!
-                    } 
                     return resp.ok;
                   }),
                   catchError(err=> of(false))
                 )
   }
 
+  logOut(){
+    localStorage.removeItem('token');
+  }
 }

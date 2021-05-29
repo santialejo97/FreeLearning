@@ -46,7 +46,7 @@ export class UsuarioComponent implements OnInit {
     }
     this.usuario.fk_carreraId= this.selector.carreraId;
     this.servicio.postEstudiante(this.usuario).subscribe(resp =>{
-      this.servicio.mostrarSnackBar('Estudiante Creado') //poner sankBar 
+      this.servicio.mostrarSnackBar('Estudiante Creado') 
       this.router.navigate(['/auth/login'])
     })
   }
@@ -59,7 +59,7 @@ export class UsuarioComponent implements OnInit {
     }
 
     this.servicio.postEmpleado(this.empleado).subscribe(resp=>{
-      this.servicio.mostrarSnackBar('Empleado Creado')//poner sankBar 
+      this.servicio.mostrarSnackBar('Empleado Creado')
       this.router.navigate([''])
     })
     

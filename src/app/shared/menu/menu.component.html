@@ -48,6 +48,12 @@
       <span>{{"settings" |titlecase}}</span></a>
     </mat-nav-list>
 
+    <mat-nav-list>
+      <a routerLink="/auth" mat-list-item (click)="sidenav.toggle()" (click)="logOut()">
+        <mat-icon mat-list-icon>logout</mat-icon>
+      <span>{{"log out" |titlecase}}</span></a>
+    </mat-nav-list>
+
    
 
   </mat-sidenav>

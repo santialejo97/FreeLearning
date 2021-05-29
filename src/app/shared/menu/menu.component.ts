@@ -13,5 +13,9 @@ export class MenuComponent  {
   }
   constructor(private authServices: ServiceService){}
 
+  logOut(){
+    this.authServices.logOut();
+  }
+
  
 }

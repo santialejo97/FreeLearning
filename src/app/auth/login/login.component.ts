@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
   ingreso(){
     if(this.tipo == '1'){
       this.services.postLoginEstudiante(this.login).subscribe(respo=>{
-        console.log('Bienvenido estudiante')
-        this.router.navigate(['/comunidad/home'])
+        if(respo){
+          this.services.mostrarSnackBar('Bienvenido')
+          this.router.navigate(['/comunidad/home'])
+         }else{
+          this.services.mostrarSnackBar('Validar Información')
+         }
       })
     }else if(this.tipo == '2'){
       this.services.postLoginEmpleados(this.login).subscribe(respo=>{

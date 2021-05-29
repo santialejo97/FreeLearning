@@ -46,3 +46,10 @@ export interface User{
   name: string,
   msg: string 
 }
+
+export interface Foro{
+  foroId?: string,
+  foroDescripcion: string,
+  fk_estudianteId?: number,
+  fk_estadoId?: number
+}
