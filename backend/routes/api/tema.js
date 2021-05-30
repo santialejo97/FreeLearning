@@ -1,36 +1,36 @@
 const router = require('express').Router();
 // import ManagementController from '../controller/ManagementController';
-const {carrera} = require('../../db');
+const {tema} = require('../../db');
 
 /* router.get('/',(req, res) => {
     res.send('Entra correctamente, funciona!!');
 }) */
 router.get('/', async (req, res) =>{
-    const carreras= await carrera.findAll();
-    res.json(carreras);
+    const temas= await tema.findAll();
+    res.json(temas);
 });
 router.get('/:id', async (req, res) =>{
-    const carreras= await carrera.findOne({
-        where: { carreraId: req.params.id }
+    const temas= await tema.findOne({
+        where: { temaId: req.params.id }
     });
-    res.json(carreras);
+    res.json(temas);
 });
 
 router.post('/', async (req, res) =>{
-    const carreras= await carrera.create(req.body);
-    res.json(carreras);
+    const temas= await tema.create(req.body);
+    res.json(temas);
 });
 
 router.put('/:id', async (req, res) =>{
-    await carrera.update(req.body,{
-        where: { carreraId: req.params.id }
+    await tema.update(req.body,{
+        where: { temaId: req.params.id }
     });
     res.json({success: 'se ha modificado'});
 });
 
 router.delete('/:id', async (req, res) =>{
-    await carrera.destroy(req.body,{
-        where: { carreraId: req.params.id }
+    await tema.destroy(req.body,{
+        where: { temaId: req.params.id }
     });
     res.json({success: 'se ha eliminado'});
 });

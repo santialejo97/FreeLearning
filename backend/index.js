@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}));
 
 app.use('/api',apiRouter);
-app.get("/develop", (req, res) =>
+app.get("/", (req, res) =>
         res.status(200).send({
             message: "Welcome to this API Freelearning.",
         })
