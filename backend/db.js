@@ -7,8 +7,10 @@ const forosModel = require('./models/foro');
 const respuestasModel = require('./models/respuesta_foro');
 const publicacionesModel = require('./models/publicacion');
 //Chef_16032
-const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
-    host:'localhost', 
+//b9dda9592d64cb:4c4d3caa@us-cdbr-east-04.cleardb.com/heroku_3b0fafbdc4f5d9f?reconnect=true
+//const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
+const sequelize = new Sequelize('heroku_3b0fafbdc4f5d9f','b9dda9592d64cb','4c4d3caa',{ 
+    host:'us-cdbr-east-04.cleardb.com', 
     dialect:'mysql',
     logging: false
 });
