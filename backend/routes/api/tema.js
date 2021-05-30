@@ -9,6 +9,7 @@ router.get('/', async (req, res) =>{
     const temas= await tema.findAll();
     res.json(temas);
 });
+
 router.get('/:id', async (req, res) =>{
     const temas= await tema.findOne({
         where: { temaId: req.params.id }
