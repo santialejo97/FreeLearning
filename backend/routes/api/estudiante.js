@@ -22,7 +22,8 @@ router.post('/login', [
 
         const errors = validationResult(req);
         if(!errors.isEmpty()){
-            return res.status(422).json({errores: errors.array()})
+            return res.status(422).json({
+                errores: errors.array()})
         }
 
     const body = req.body;
@@ -35,12 +36,21 @@ router.post('/login', [
         const iguales = bcrypt.compareSync(body.Password, estudiantes.estudiantePassword);
         
         if(iguales){
-        res.json({ success: createToken(estudiantes)});
+        res.json({
+            ok: true,
+            id: estudiantes.estudianteId,
+            name: estudiantes.estudianteNombre, 
+            success: createToken(estudiantes)
+        });
         }else{
-        res.json({ error: 'Error en constraseña'});
+        res.json({ 
+            ok: false,
+            error: 'Error en constraseña'});
         }
     }else{
-        res.json({ error: 'Error en usuario y/o constraseña'});
+        res.json({
+            ok: false,
+            error: 'Error en usuario y/o constraseña'});
     }
     
 });
@@ -58,7 +68,12 @@ router.get('/:id', cors(), async (req, res) => {
 router.post('/', cors(), async (req, res) => {
     req.body.estudiantePassword = bcrypt.hashSync(req.body.estudiantePassword, 10);
     const estudiantes = await estudiante.create(req.body);
-    res.json(estudiantes);
+    const token = await createToken(estudiante);
+    res.json({
+        ok: true,
+        estudiantes,
+        token: token
+    });
 });
 
 router.put('/:id', cors(), async (req, res) => {
@@ -84,6 +99,7 @@ router.delete('/:id', async (req, res) => {
         success: 'se ha eliminado'
     });
 });
+
 const createToken =(estudiantes)=>{
     const payload = {
         usuarioId: estudiantes.estudianteId,
