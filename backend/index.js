@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
+const PORT=process.env.PORT || 3000;
 const app = express();
 require('./db');
 
@@ -17,12 +18,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}));
 
 app.use('/api',apiRouter);
-app.get("/develop", (req, res) =>
+app.get("/", (req, res) =>
         res.status(200).send({
             message: "Welcome to this API Freelearning.",
         })
     );
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Servidor arrancado!');
 });
 

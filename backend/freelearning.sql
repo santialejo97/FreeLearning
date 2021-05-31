@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS carreras (
 	`createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL);
 
+CREATE TABLE IF NOT EXISTS temas (
+	temaId INT(11) AUTO_INCREMENT PRIMARY KEY,
+	temaNombre VARCHAR(150) NOT NULL,
+	temaImagen VARCHAR(150) NOT NULL,
+	`createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL);
+
 CREATE TABLE IF NOT EXISTS estudiantes (
 	estudianteId INT(11) AUTO_INCREMENT PRIMARY KEY,
 	estudianteNombre VARCHAR(150) NOT NULL,
@@ -92,6 +99,7 @@ CREATE TABLE IF NOT EXISTS  foros (
 	foroDescripcion VARCHAR(250)  NOT NULL,
 	fk_estudianteId INT(11),
 	fk_estadoId INT(11),
+	fk_temaId INT(11),
 	fechaRegistro DATE ,
 	`createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL);
@@ -139,6 +147,7 @@ ALTER TABLE publicacion_extras ADD CONSTRAINT fk_publicacionId FOREIGN KEY (fk_p
 
 ALTER TABLE foros ADD CONSTRAINT fk_usuarioId2 FOREIGN KEY (fk_estudianteId) REFERENCES estudiantes (estudianteId);
 ALTER TABLE foros ADD CONSTRAINT fk_estadoId7 FOREIGN KEY (fk_estadoId) REFERENCES estados (estadoId);
+ALTER TABLE foros ADD CONSTRAINT fk_tema FOREIGN KEY (fk_temaId) REFERENCES temas (temaId);
 
 ALTER TABLE respuesta_foros ADD CONSTRAINT fk_usuarioId3 FOREIGN KEY (fk_estudianteId) REFERENCES estudiantes (estudianteId);
 ALTER TABLE respuesta_foros ADD CONSTRAINT fk_estadoId8 FOREIGN KEY (fk_estadoId) REFERENCES estados (estadoId);
