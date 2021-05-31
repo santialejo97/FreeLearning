@@ -18,7 +18,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}));
 
 app.use('/api',apiRouter);
-app.get("/", (req, res) =>
+app.use( express.static('public'));
+app.get('*', (req, res)=>{
+    res.sendFile( path.resolve(__dirname, 'public/index.html'))
+})
+app.get("/develop", (req, res) =>
         res.status(200).send({
             message: "Welcome to this API Freelearning.",
         })
