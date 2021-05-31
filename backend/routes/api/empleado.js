@@ -42,7 +42,11 @@ router.post('/login', [
         const iguales = bcrypt.compareSync(body.Password, empleados.empleadoPassword);
         
         if(iguales){
-        res.json({ success: createToken(empleados)});
+        res.json({
+            id: empleados.empleadoId,
+            name: empleados.empleadoNombre, 
+            success: createToken(empleados)
+        });
         }else{
         res.json({ error: 'Error en constraseña'});
         }

@@ -7,14 +7,14 @@ const apiCarrerasRouter= require('./api/carrera');
 const apiPublicacionesRouter= require('./api/publicacion');
 const apiForosRouter= require('./api/foro');
 const apiRespuestasRouter= require('./api/respuesta');
-//const apiLoginRouter= require('./api/login');
+const apiSessionRouter= require('./api/session');
 
-router.use('/estudiantes', apiEstudiantesRouter);
+router.use('/estudiantes',apiEstudiantesRouter);
 router.use('/empleados', apiEmpleadosRouter);
-router.use('/carreras',apiCarrerasRouter);
+router.use('/carreras', apiCarrerasRouter);
 router.use('/publicaciones', middlewares.checkToken, apiPublicacionesRouter);
-router.use('/foros', middlewares.checkToken, apiForosRouter);
+router.use('/foros',middlewares.checkToken, apiForosRouter); //middlewares.checkToken
 router.use('/respuestas', middlewares.checkToken, apiRespuestasRouter);
-//router.use('/login',apiLoginRouter);
+router.use('/renew',middlewares.checkToken,  apiSessionRouter);
 
 module.exports= router;
