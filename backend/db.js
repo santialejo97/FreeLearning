@@ -6,8 +6,8 @@ const carrerasModel = require('./models/carrera');
 const forosModel = require('./models/foro');
 const respuestasModel = require('./models/respuesta_foro');
 const publicacionesModel = require('./models/publicacion');
+const lenguajesModel = require('./models/lenguaje');
 //Chef_16032
-
 //b9dda9592d64cb:4c4d3caa@us-cdbr-east-04.cleardb.com/heroku_3b0fafbdc4f5d9f?reconnect=true
 //const sequelize = new Sequelize('freeLearning','root','Chef_16032',{ 
 const sequelize = new Sequelize('heroku_3b0fafbdc4f5d9f','b9dda9592d64cb','4c4d3caa',{ 
@@ -19,6 +19,7 @@ const sequelize = new Sequelize('heroku_3b0fafbdc4f5d9f','b9dda9592d64cb','4c4d3
 const estudiante= estudiantesModel(sequelize,Sequelize);
 const empleado= empleadosModel(sequelize,Sequelize);
 const carrera= carrerasModel(sequelize,Sequelize);
+const lenguage= lenguajesModel(sequelize,Sequelize);
 const foro= forosModel(sequelize,Sequelize);
 const respuesta= respuestasModel(sequelize,Sequelize);
 const publicacion= publicacionesModel(sequelize,Sequelize);
