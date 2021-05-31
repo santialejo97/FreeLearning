@@ -1,10 +1,6 @@
 const router = require('express').Router();
-// import ManagementController from '../controller/ManagementController';
 const {carrera} = require('../../db');
 
-/* router.get('/',(req, res) => {
-    res.send('Entra correctamente, funciona!!');
-}) */
 router.get('/', async (req, res) =>{
     const carreras= await carrera.findAll();
     res.json(carreras);
