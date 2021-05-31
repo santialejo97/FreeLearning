@@ -15,6 +15,7 @@ router.use('/empleados', apiEmpleadosRouter);
 router.use('/carreras',apiCarrerasRouter);
 router.use('/temas',apiTemasRouter);
 
+
 router.use('/publicaciones', middlewares.checkToken, apiPublicacionesRouter);
 router.use('/foros',middlewares.checkToken, apiForosRouter); //middlewares.checkToken
 router.use('/respuestas', middlewares.checkToken, apiRespuestasRouter);
