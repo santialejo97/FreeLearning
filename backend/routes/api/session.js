@@ -1,4 +1,3 @@
-const { ConsoleReporter } = require('jasmine');
 const {estudiante} = require('../../db');
 const router = require('express').Router();
 const moment = require('moment');
