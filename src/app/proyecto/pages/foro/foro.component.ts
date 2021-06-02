@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from '../../../services/service.service';
-import { Foro } from '../../interfaces/usuario.interfeces';
+import { Foro, Temas } from '../../interfaces/usuario.interfeces';
 
 @Component({
   selector: 'app-foro',
@@ -13,6 +13,8 @@ export class ForoComponent implements OnInit {
   @ViewChild("miForo") form!:NgForm;
   foro!: Foro;
   foros!: Foro[];
+  imagen!: string;
+  temas: Temas[]=[];
   
   get User(){
     return this.authService.User;
@@ -21,13 +23,18 @@ export class ForoComponent implements OnInit {
   constructor(private authService: ServiceService) { }
 
   ngOnInit() {
+    this.authService.getTemas().subscribe(resp => {
+      resp.forEach(tema =>{
+        this.temas.push(tema);
+      })
+    })
     this.authService.getForos().subscribe(resp=> {
       this.foros= resp;
     })
+    console.log(this.temas);
   }
 
   crear(){
-    console.log(this.form.controls.descripcion.value)
     this.foro={
       foroDescripcion: this.form.controls.descripcion.value
     }

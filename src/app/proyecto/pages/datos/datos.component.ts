@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cambio } from '../../interfaces/usuario.interfeces';
+import { ServiceService } from '../../../services/service.service';
+import { ThrowStmt } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-datos',
@@ -9,6 +12,15 @@ import { Cambio } from '../../interfaces/usuario.interfeces';
 })
 export class DatosComponent implements OnInit {
   title: string='Actualizacion de Informaciòn';
+  _ObjetoCambio: Cambio={
+    estudianteNombre:'',
+    estudianteEmail:'',
+    estudiantePassword:''
+  }
+
+  get user(){
+    return this.authService.User;
+  }
 
   miFormulario: FormGroup=this.fb.group({
     user:['', [Validators.required, Validators.minLength(3)]],
@@ -16,18 +28,18 @@ export class DatosComponent implements OnInit {
     password:['', [Validators.required, Validators.minLength(3)]]
   });
 
-  objetoCambio: Cambio={
-    user:'',
-    email:'',
-    password:''
-  }
   
-  constructor(private fb: FormBuilder) { }
+  
+  constructor(private fb: FormBuilder, private authService: ServiceService) { }
 
   ngOnInit(): void {
-    // consumir el servicio para la informacion del usuario 
-    this.miFormulario.reset({
-      
+    const id= this.user.id.toString();
+    this.authService.getEstudianteId(id).subscribe(resp=>{
+      this.miFormulario.reset({
+        user: resp.estudianteNombre,
+        email: resp.estudianteEmail,
+        password: resp.estudiantePassword
+      })
     })
   }
 
@@ -36,8 +48,13 @@ export class DatosComponent implements OnInit {
   }
 
   cambios(){
-    const formValue= {...this.miFormulario.value};
-    this.objetoCambio= formValue;
-    console.log(this.objetoCambio)
+    const id= this.user.id.toString();
+    this._ObjetoCambio.estudianteNombre= this.miFormulario.get('user')?.value ;
+    this._ObjetoCambio.estudianteEmail= this.miFormulario.get('email')?.value ;
+    this._ObjetoCambio.estudiantePassword= this.miFormulario.get('password')?.value ;
+    console.log(this._ObjetoCambio)
+    this.authService.putEstudianteId(id , this._ObjetoCambio).subscribe( resp => {
+      console.log(resp);
+    })
   }
 }

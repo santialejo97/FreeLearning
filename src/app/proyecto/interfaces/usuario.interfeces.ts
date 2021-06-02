@@ -15,6 +15,11 @@ export interface Empleado {
   empleadoPoliticaDatos: number ;
 }
 
+export interface Temas {
+  temaId      : number;
+  temaNombre  : string;
+  temaImagen  : string;
+}
 export interface Carrera {
   carreraId:     number;
   carreraNombre: string;
@@ -30,19 +35,21 @@ export interface Login{
 }
 
 export interface Cambio{
-  user: string,
-  email: string,
-  password: string
+  estudianteNombre: string,
+  estudianteEmail: string,
+  estudiantePassword: string
 }
 
 export interface Response{
   ok: boolean,
+  usuarioId: number,
   token: string,
   name?: string,
   msg?: string 
 }
 
 export interface User{
+  id: number,
   name: string,
   msg: string 
 }
@@ -51,5 +58,6 @@ export interface Foro{
   foroId?: string,
   foroDescripcion: string,
   fk_estudianteId?: number,
-  fk_estadoId?: number
+  fk_estadoId?: number,
+  imagen?:string
 }

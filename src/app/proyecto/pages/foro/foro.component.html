@@ -16,6 +16,21 @@
                name="descripcion"
                required />
             </div>
+
+            <div class="p-field">
+
+
+              <label class="p-text-bold p-text-capitalize" for="descripcion"
+                >Que lenjuage esta preguntando?</label>
+              <p-dropdown
+              placeholder="Seleccione Lenguaje de programación"
+              optionLabel="temaNombre"
+              [showClear]="true"
+              [options]='temas'
+              [(ngModel)]='imagen'
+              name='temas'
+              ></p-dropdown>            
+            </div>
     
             <div class="p-col-2 p-mx-auto">
               <button
@@ -23,7 +38,6 @@
                 type="submit"
                 class="p-button-info"
                 label="Crear"
-                
               ></button>
             </div>
           </form>

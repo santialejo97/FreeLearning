@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Carrera, Estudiante, Empleado, Login, Response, User, Foro } from '../proyecto/interfaces/usuario.interfeces';
+import { Carrera, Estudiante, Empleado, Login, Response, User, Foro, Cambio, Temas } from '../proyecto/interfaces/usuario.interfeces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,11 @@ export class ServiceService {
   getCarrera(): Observable<Carrera[]>{
     return this.http.get<Carrera[]>(`${this.urlBase}/carreras`);
   }
+
+  getTemas(): Observable<Temas[]>{
+    return this.http.get<Temas[]>(`${this.urlBase}/temas/`);
+  }
+
   // Registro 
   postEstudiante(user: Estudiante){
     return this.http.post<Response>(`${this.urlBase}/estudiantes`, user)
@@ -45,6 +50,14 @@ export class ServiceService {
 
   getEstudiante(): Observable<Estudiante[]>{
     return this.http.get<Estudiante[]>(`${this.urlBase}/estudiantes`)
+  }
+
+  getEstudianteId(id: string): Observable<Estudiante>{
+    return this.http.get<Estudiante>(`${this.urlBase}/estudiantes/${id}`)
+  }
+
+  putEstudianteId(id: string, user:Cambio): Observable<Estudiante>{
+    return this.http.put<Estudiante>(`${this.urlBase}/estudiantes/${id}`, user)
   }
 
   //login
@@ -92,6 +105,7 @@ export class ServiceService {
                     if(resp.ok === true){
                       localStorage.setItem('token', resp.token)
                       this._User={
+                        id: resp.usuarioId!,
                         name: resp.name!,
                         msg: resp.msg!
                       } 
