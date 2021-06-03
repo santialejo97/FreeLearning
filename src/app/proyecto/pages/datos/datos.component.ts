@@ -33,7 +33,7 @@ export class DatosComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: ServiceService) { }
 
   ngOnInit(): void {
-    const id= this.user.id.toString();
+    const id= this.user.id;
     this.authService.getEstudianteId(id).subscribe(resp=>{
       this.miFormulario.reset({
         user: resp.estudianteNombre,

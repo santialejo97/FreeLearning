@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../../../services/service.service';
+import { Tarjeta } from '../../interfaces/usuario.interfeces';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +14,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  info: Tarjeta[]=[];
 
-  ngOnInit(): void {
+  get user(){
+    return this.authServices.User;
+  }
+
+  constructor(private authServices: ServiceService) { }
+
+  ngOnInit(){
+    this.authServices.getForosGeneral().subscribe(resp=>{
+      resp.forEach(card=>{
+        this.authServices.getTemasId(card.fk_temaId!).subscribe(tema=>{
+          this.authServices.getEstudianteId(card.fk_estudianteId!).subscribe(user=>{
+            let tarjeta={
+              user: user.estudianteNombre,
+              imagen: tema.temaImagen,
+              pregunta: card.foroDescripcion,
+              tema: tema.temaNombre,
+            }
+            this.info.push(tarjeta);
+          })
+        });
+      })
+    })
+    console.log(this.info)
+    
   }
 
 }

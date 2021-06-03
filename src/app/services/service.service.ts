@@ -34,6 +34,10 @@ export class ServiceService {
     return this.http.get<Temas[]>(`${this.urlBase}/temas/`);
   }
 
+  getTemasId(id: number): Observable<Temas>{
+    return this.http.get<Temas>(`${this.urlBase}/temas/${id}`);
+  }
+
   // Registro 
   postEstudiante(user: Estudiante){
     return this.http.post<Response>(`${this.urlBase}/estudiantes`, user)
@@ -52,7 +56,7 @@ export class ServiceService {
     return this.http.get<Estudiante[]>(`${this.urlBase}/estudiantes`)
   }
 
-  getEstudianteId(id: string): Observable<Estudiante>{
+  getEstudianteId(id: number): Observable<Estudiante>{
     return this.http.get<Estudiante>(`${this.urlBase}/estudiantes/${id}`)
   }
 
@@ -94,6 +98,12 @@ export class ServiceService {
     const headers= new HttpHeaders()
               .set('user-token', localStorage.getItem('token') || '')
     return this.http.get<Foro[]>(`${this.urlBase}/foros/creador/`, {headers});
+  }
+  
+  getForosGeneral(): Observable<Foro[]>{
+    const headers= new HttpHeaders()
+              .set('user-token', localStorage.getItem('token') || '')
+    return this.http.get<Foro[]>(`${this.urlBase}/foros/`, {headers});
   }
 
   validarToken(): Observable<boolean>{

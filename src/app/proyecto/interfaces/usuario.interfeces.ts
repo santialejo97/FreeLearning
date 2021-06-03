@@ -54,10 +54,18 @@ export interface User{
   msg: string 
 }
 
+export interface Tarjeta{
+  user: string,
+  imagen: string,
+  pregunta: string ,
+  tema: string ,
+}
+
 export interface Foro{
   foroId?: string,
   foroDescripcion: string,
   fk_estudianteId?: number,
   fk_estadoId?: number,
+  fk_temaId?: number,
   imagen?:string
 }

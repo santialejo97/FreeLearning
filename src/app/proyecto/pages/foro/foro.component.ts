@@ -13,7 +13,7 @@ export class ForoComponent implements OnInit {
   @ViewChild("miForo") form!:NgForm;
   foro!: Foro;
   foros!: Foro[];
-  imagen!: string;
+  imagen!: Temas;
   temas: Temas[]=[];
   
   get User(){
@@ -35,8 +35,10 @@ export class ForoComponent implements OnInit {
   }
 
   crear(){
+    console.log(this.imagen);
     this.foro={
-      foroDescripcion: this.form.controls.descripcion.value
+      foroDescripcion: this.form.controls.descripcion.value,
+      fk_temaId: this.imagen.temaId
     }
     this.authService.postForos(this.foro).subscribe(resp=>{
       
