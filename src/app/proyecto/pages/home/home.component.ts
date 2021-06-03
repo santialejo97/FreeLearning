@@ -14,11 +14,7 @@ import { Tarjeta } from '../../interfaces/usuario.interfeces';
 })
 export class HomeComponent implements OnInit {
 
-  info: Tarjeta[]=[];
-
-  get user(){
-    return this.authServices.User;
-  }
+  _Info: Tarjeta[]=[];
 
   constructor(private authServices: ServiceService) { }
 
@@ -28,18 +24,18 @@ export class HomeComponent implements OnInit {
         this.authServices.getTemasId(card.fk_temaId!).subscribe(tema=>{
           this.authServices.getEstudianteId(card.fk_estudianteId!).subscribe(user=>{
             let tarjeta={
+              id: card.foroId!,
               user: user.estudianteNombre,
               imagen: tema.temaImagen,
               pregunta: card.foroDescripcion,
               tema: tema.temaNombre,
             }
-            this.info.push(tarjeta);
+            this._Info.push(tarjeta);
           })
         });
       })
     })
-    console.log(this.info)
-    
+    console.log(this._Info);
   }
 
 }

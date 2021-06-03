@@ -4,7 +4,7 @@
     fxLayoutAlign="center"
     fxLayoutGap="10px">
         <div class="col-6"  class='mb-4' fxFlex="20" fxFlex.lg="15" fxFlex.sm="30">
-            <mat-card class="example-card" *ngFor='let card of info' class='mb-4'>
+            <mat-card class="example-card" *ngFor='let card of _Info' class='mb-4'>
                 <mat-card-header>
                   <div mat-card-avatar class="example-header-image"></div>
                   <mat-card-title>{{card.user}}</mat-card-title>
@@ -18,7 +18,7 @@
                   </p>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button pButton>INGRESAR</button>
+                  <button pButton [routerLink]="['/comunidad/respuestas', card.id] ">INGRESAR</button>
                   
                 </mat-card-actions>
               </mat-card>

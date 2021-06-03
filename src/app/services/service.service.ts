@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Carrera, Estudiante, Empleado, Login, Response, User, Foro, Cambio, Temas } from '../proyecto/interfaces/usuario.interfeces';
+import { Carrera, Estudiante, Empleado, Login, Response, User, Foro, Cambio, Temas, Respuesta } from '../proyecto/interfaces/usuario.interfeces';
 
 @Injectable({
   providedIn: 'root'
@@ -99,11 +99,28 @@ export class ServiceService {
               .set('user-token', localStorage.getItem('token') || '')
     return this.http.get<Foro[]>(`${this.urlBase}/foros/creador/`, {headers});
   }
+
+  getForosId(id: number): Observable<Foro>{
+    const headers= new HttpHeaders()
+              .set('user-token', localStorage.getItem('token') || '')
+    return this.http.get<Foro>(`${this.urlBase}/foros/identificador/${id}`, {headers});
+  }
   
   getForosGeneral(): Observable<Foro[]>{
     const headers= new HttpHeaders()
               .set('user-token', localStorage.getItem('token') || '')
     return this.http.get<Foro[]>(`${this.urlBase}/foros/`, {headers});
+  }
+  getRespuesta(id: number):Observable<Respuesta[]>{
+    const headers= new HttpHeaders()
+    .set('user-token', localStorage.getItem('token') || '')
+    return this.http.get<Respuesta[]>(`${this.urlBase}/respuestas/foro/${id}`, {headers})
+  }
+
+  postRespuesta(respuesta: Respuesta):Observable<Respuesta>{
+    const headers= new HttpHeaders()
+    .set('user-token', localStorage.getItem('token') || '')
+    return this.http.post<Respuesta>(`${this.urlBase}/respuestas/`, respuesta ,{headers})
   }
 
   validarToken(): Observable<boolean>{

@@ -5,6 +5,7 @@ import { EstadoComponent } from './pages/estados/estado.component';
 import { ForoComponent } from './pages/foro/foro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PublicationsComponent } from './pages/publications/publications.component';
+import { RespuestaComponent } from './pages/respuesta/respuesta.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
         {
           path: 'publications',
           component: PublicationsComponent
+        },
+        {
+          path: 'respuestas/:id',
+          component: RespuestaComponent
         }
       ],
     },

@@ -13,6 +13,7 @@ import { EstadoPipe } from '../estado.pipe';
 import { DatosComponent } from './pages/datos/datos.component';
 import { ComunidadRoutingModule } from './comunidad-routing.module';
 import { PublicationsComponent } from './pages/publications/publications.component';
+import { RespuestaComponent } from './pages/respuesta/respuesta.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PublicationsComponent } from './pages/publications/publications.compone
     EstadoPipe,
     DatosComponent,
     PublicationsComponent,
+    RespuestaComponent,
     
   ],
   imports: [
