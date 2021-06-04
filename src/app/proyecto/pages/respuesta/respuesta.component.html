@@ -9,14 +9,14 @@
                     <label class="p-text-bold p-text-capitalize p-m-3" for="descripcion"
                     >¿Que desea compartir, el dia de hoy?</label>
     
-                   <input type="text" class="sm-3 form-control" 
+                   <input type="text" required class="sm-3 form-control" 
                    [(ngModel)]="responde" name="respuesta">
 
             </div>
     
             <div class="p-col-4 right" >
                 <span class="p-buttonset">
-                    <button pButton type="submit" label="Publicar" icon="pi pi-check" class="p-mr-2"></button>
+                    <button pButton type="submit" label="Publicar" icon="pi pi-check" class="p-mr-2" onClick="refreshPage()"></button>
                 </span>
             </div>
           </form>
@@ -29,3 +29,8 @@
     </div>
     
   </div>
+  <script>
+    function refreshPage(){
+    window. location. reload();
+    }
+  </script>
