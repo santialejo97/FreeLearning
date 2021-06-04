@@ -11,7 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./datos.component.css']
 })
 export class DatosComponent implements OnInit {
-  title: string='Actualizacion de Informaciòn';
+  title: string='Actualiza tus datos';
   _ObjetoCambio: Cambio={
     estudianteNombre:'',
     estudianteEmail:'',

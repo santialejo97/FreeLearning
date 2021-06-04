@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
               user: user.estudianteNombre,
               imagen: tema.temaImagen,
               pregunta: card.foroDescripcion,
-              tema: tema.temaNombre,
+              tema: tema.temaNombre
             }
             this._Info.push(tarjeta);
           })

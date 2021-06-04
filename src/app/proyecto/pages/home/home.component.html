@@ -10,15 +10,14 @@
                   <mat-card-title>{{card.user}}</mat-card-title>
                   <mat-card-subtitle>Estudiante</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="{{card.imagen}}"  alt="Photo of a Shiba Inu" style="width: 50%;">
+                <img mat-card-image src="{{card.imagen}}"  alt="Photo of a Shiba Inu" style="width:30%;">
                 <mat-card-content>
-                  <h3>{{card.tema}}</h3>
-                  <p>
-                   {{card.pregunta}}
-                  </p>
+                  <h2>¿{{card.pregunta}}?</h2>
+                  <i>Tema: {{card.tema}}
+                  </i>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button pButton [routerLink]="['/comunidad/respuestas', card.id] ">INGRESAR</button>
+                  <button pButton [routerLink]="['/comunidad/respuestas', card.id] ">Participa en este foro</button>
                   
                 </mat-card-actions>
               </mat-card>

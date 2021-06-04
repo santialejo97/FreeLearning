@@ -43,6 +43,7 @@ export class ForoComponent implements OnInit {
     this.authService.postForos(this.foro).subscribe(resp=>{
       
     })
+    //window.location.reload();
   }
 
 }

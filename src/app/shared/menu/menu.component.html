@@ -21,7 +21,7 @@
     <mat-nav-list>
       <a routerLink="./comunidad/home" mat-list-item (click)="sidenav.toggle()">
         <mat-icon mat-list-icon>groups</mat-icon>
-      <span>{{"home" |titlecase}}</span></a>
+      <span>{{"Inicio" |titlecase}}</span></a>
     </mat-nav-list>
 
     <mat-nav-list>
@@ -45,25 +45,25 @@
     <mat-nav-list>
       <a routerLink="./comunidad/datos" mat-list-item (click)="sidenav.toggle()">
         <mat-icon mat-list-icon>settings</mat-icon>
-      <span>{{"settings" |titlecase}}</span></a>
+      <span>{{"Mi cuenta" |titlecase}}</span></a>
     </mat-nav-list>
 
     <mat-nav-list>
       <a routerLink="/auth" mat-list-item (click)="sidenav.toggle()" (click)="logOut()">
         <mat-icon mat-list-icon>logout</mat-icon>
-      <span>{{"log out" |titlecase}}</span></a>
+      <span>{{"Cerrar sesión" |titlecase}}</span></a>
     </mat-nav-list>
 
    
 
   </mat-sidenav>
 
-  <mat-toolbar class="header">
+  <mat-toolbar class="header" style='color: #fff;'>
     <button mat-icon-button (click)="sidenav.toggle()">
      <mat-icon>widgets</mat-icon>
     </button>
-    <h1 style='color: #fff;'>FreeLearning</h1>
-    <span class="m-3" style='color: #fff;'>{{user.name |titlecase}}</span>
+    <h1>FreeLearning</h1>
+    <span class="m-3">{{user.name |titlecase}}</span>
   </mat-toolbar>
 
   <router-outlet></router-outlet>

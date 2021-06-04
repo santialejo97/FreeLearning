@@ -6,18 +6,17 @@
           <form (ngSubmit)='crear()' #miForo='ngForm'>
             <div class="p-field">
 
+              <label class="p-text-bold p-text-capitalize p-mb-3" for="descripcion">¿Que desea compartir, el dia de hoy?</label>
 
-              <label class="p-text-bold p-text-capitalize p-mb-3" for="descripcion"
-                >¿Que desea compartir, el dia de hoy?</label>
-
-               <textarea [rows]="3" [cols]="140" pInputTextarea autoResize="autoResize"></textarea>
-
+               <textarea class="form-control" pInputTextarea autoResize="autoResize"></textarea>
+               <br>
+               <label class="p-text-bold p-text-capitalize p-mb-3" for="descripcion">Adjuntar archivos</label>
+               <input type="file" name="file" class="form-control">
             </div>
     
-            <div class="p-col-4 right">
+            <div class="p-col-3 right">
                 <span class="p-buttonset">
                     <button pButton type="button" label="Publicar" icon="pi pi-check" class="p-mr-2"></button>
-                    <button pButton type="button" label="Cancelar" icon="pi pi-times"></button>
                 </span>
             </div>
           </form>

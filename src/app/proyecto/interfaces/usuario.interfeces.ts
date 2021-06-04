@@ -59,7 +59,7 @@ export interface Tarjeta{
   user: string,
   imagen: string,
   pregunta: string ,
-  tema: string ,
+  tema: string 
 }
 
 export interface Foro{
@@ -68,7 +68,8 @@ export interface Foro{
   fk_estudianteId?: number,
   fk_estadoId?: number,
   fk_temaId?: number,
-  imagen?:string
+  imagen?:string,
+  fechaRegistro?:Date
 }
 
 export interface Respuesta{
